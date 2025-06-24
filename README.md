@@ -9,16 +9,16 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 > **Abstract:** Medical image classification is crucial for computer-aided diagnosis, while existing methods face challenges in jointly modeling local texture, global dependencies, and long-range contextual relationships. Specifically, CNNs typically lack long-range feature capture capability, while Transformers rely on a large amount of labeled data and are computationally expensive. Furthermore, existing hybrid architectures usually suffer from inefficient feature interaction and computational redundancy. To address these problems, in this study, we propose a novel CNN-Transformer-Mamba ternary collaborative architecture named MedCTM networks. The network synergizes convolutional local feature extraction, Transformer-based bidirectional cross-attention, and Mamba for linear complexity long sequence modeling. Firstly, a bidirectional channel interaction attention mechanism dynamically fuses CNN-captured local details with Mamba-modeled global spatial dependencies. Secondly, a lightweight three-tier cascade architecture  is designed to progressively refine multi-scale features. Comprehensive experiments based on eight medical image benchmark datasets demonstrate that MedCTM achieves remarkable state-of-the-art performance and superior computational efficiency.
 
 <div align="center">
-  <img src="assets/MedCTM.png" width="800px" />
+  <img src="assets/framework.png" width="800px" />
 </div>
 
-> The overall architecture of MedCTM..<br>
+> The overall architecture of MedCTM.<br>
 
 <div align="center">
-  <img src="assets/comparewithmamba.png" width="600px" />
+  <img src="assets/cluster.png" width="600px" />
 </div>
 
-> ***Accuracy*** *vs.* ***Speed*** with Mamba-based methods.
+> t-SNE results for MedCTM and other models.
 
 ------
 # Classification results
