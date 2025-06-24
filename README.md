@@ -12,7 +12,7 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
   <img src="assets/framework.png" width="600px" />
 </div>
 
-> The overall architecture of MedCTM
+> The overall architecture of MedCTM.
 
 
 # Installation
@@ -50,6 +50,11 @@ Since MedCTM is suitable for most medical images, you can try applying it to adv
 
 # Results visualization
 
+<div align="center">
+  <img src="assets/cluster.png" width="600px" />
+</div>
+
+> Heatmaps for visualization based on Grad-CAM. The visualized layers are all from the last layer before entering the classification head.
 <div align="center">
   <img src="assets/cluster.png" width="600px" />
 </div>
