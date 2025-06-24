@@ -23,7 +23,7 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 ------
 # The classification performance of MedCTM
 Since MedCTM is suitable for most medical images, you can try applying it to advanced tasks (such as ***multi-label classification***, ***medical image segmentation***, and ***medical object detection***). In addition, we are testing MedCTM with different parameter sizes.
-# 📌The next step will be to make the weights public.
+## 📌The next step will be to make the weights public.
 | Dataset | Task | F1-score | AUC | Kappa |
 |:------:|:--------:|:----------:|:----------:|:----------:|
 | **[Fetal-Planes-DB](https://zenodo.org/records/3904280)** | Multi-Class (4) | **88.8 / 90.1** | **98.8 / 98.9** | **87.8 / 88.7** |
