@@ -51,7 +51,7 @@ Since MedCTM is suitable for most medical images, you can try applying it to adv
 # Results visualization
 
 <div align="center">
-  <img src="assets/cluster.png" width="600px" />
+  <img src="assets/heatmap.png" width="600px" />
 </div>
 
 > Heatmaps for visualization based on Grad-CAM. The visualized layers are all from the last layer before entering the classification head.
