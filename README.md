@@ -12,6 +12,9 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
   <img src="assets/framework.png" width="1000px" />
 </div>
 
+<div align="center">
+  <img src="assets/BCIA.png" width="1000px" />
+</div>
 > The overall architecture of MedCTM.
 
 
