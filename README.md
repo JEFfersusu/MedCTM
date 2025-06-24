@@ -9,7 +9,7 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 > **Abstract:** Medical image classification is crucial for computer-aided diagnosis, while existing methods face challenges in jointly modeling local texture, global dependencies, and long-range contextual relationships. Specifically, CNNs typically lack long-range feature capture capability, while Transformers rely on a large amount of labeled data and are computationally expensive. Furthermore, existing hybrid architectures usually suffer from inefficient feature interaction and computational redundancy. To address these problems, in this study, we propose a novel CNN-Transformer-Mamba ternary collaborative architecture named MedCTM networks. The network synergizes convolutional local feature extraction, Transformer-based bidirectional cross-attention, and Mamba for linear complexity long sequence modeling. Firstly, a bidirectional channel interaction attention mechanism dynamically fuses CNN-captured local details with Mamba-modeled global spatial dependencies. Secondly, a lightweight three-tier cascade architecture  is designed to progressively refine multi-scale features. Comprehensive experiments based on eight medical image benchmark datasets demonstrate that MedCTM achieves remarkable state-of-the-art performance and superior computational efficiency.
 
 <div align="center">
-  <img src="assets/framework.png" width="600px" />
+  <img src="assets/framework.png" width="800px" />
 </div>
 
 > The overall architecture of MedCTM.
@@ -32,7 +32,7 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 Since MedCTM is suitable for most medical images, you can try applying it to advanced tasks (such as ***multi-label classification***, ***medical image segmentation***, and ***medical object detection***). In addition, we are testing MedCTM with different parameter sizes.
 
 <div align="center">
-  <img src="assets/datasets.png" width="600px" />
+  <img src="assets/datasets.png" width="800px" />
 </div>
 
 <div align="center">
