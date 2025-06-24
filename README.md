@@ -14,6 +14,19 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 
 > The overall architecture of MedCTM.<br>
 
+# Installation
+
+* `pip install torch==2.1.2 torchvision==0.16.2 torchaudio 
+* `pip install packaging==23.0
+* `pip install timm==0.9.16
+* `pip install pytest==8.3.5 chardet==4.0.0 yacs==0.1.8 termcolor==2.4.0
+* `pip install triton==2.1.0
+* `pip install causal-conv1d==1.0.1
+* `pip install mamba-ssm==1.0.1
+* `pip install scikit-learn==1.3.2 matplotlib==3.7.1
+* `pip install SimpleITK  
+* `pip install scikit-image  
+* `pip install PyWavelets==1.4.1
 <div align="center">
   <img src="assets/cluster.png" width="600px" />
 </div>
