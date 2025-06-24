@@ -1,6 +1,6 @@
 [//]: # (# MedCTM)
 <p align="center">
-  <img src="assets/MedCTM_logo.png" width="600px" />
+  <img src="assets/MedCTM_logo.png" width="100px" />
 </p>
 
 --- 
