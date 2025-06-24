@@ -69,26 +69,22 @@ Since MedCTM is suitable for most medical images, you can try applying it to adv
 
 > t-SNE results for MedCTM and other models.
 
+# Get Started
+
 #### Train:
 
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_train.sh configs/mask_rcnn/mask-rcnn_mobilemamba_b1_fpn_1x_coco.py 4
+python train.py --model resnet18 --epochs 100 --batch_size 32 --lr 0.0001 --dataset PneumoniaMNIST 
 ```
 
 #### Test:
 
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_test.sh configs/mask_rcnn/mask-rcnn_mobilemamba_b1_fpn_1x_coco.py ../../weights/downstream/det/maskrcnn.pth 4
+python test.py --dataset PneumoniaMNIST --batch_size 32 --weight_dir best_models --models convnext_tiny resnet18 MedCTM_T
 ```
 
 
 # Acknowledgements
-We thank but not limited to following repositories for providing assistance for our research:
-- [EMO](https://github.com/zhangzjn/EMO)
-- [EfficientViT](https://github.com/microsoft/Cream/tree/main/EfficientViT)
-- [VMamba](https://github.com/MzeroMiko/VMamba)
-- [TIMM](https://github.com/rwightman/pytorch-image-models)
-- [MMDetection](https://github.com/open-mmlab/mmdetection)
-- [MMSegmentation](https://github.com/open-mmlab/mmsegmentation)
+We thank but not limited to following repositories for providing assistance for our research.
 
 
