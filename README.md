@@ -8,14 +8,54 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 
 > **Abstract:** Medical image classification is crucial for computer-aided diagnosis, while existing methods face challenges in jointly modeling local texture, global dependencies, and long-range contextual relationships. Specifically, CNNs typically lack long-range feature capture capability, while Transformers rely on a large amount of labeled data and are computationally expensive. Furthermore, existing hybrid architectures usually suffer from inefficient feature interaction and computational redundancy. To address these problems, in this study, we propose a novel CNN-Transformer-Mamba ternary collaborative architecture named MedCTM networks. The network synergizes convolutional local feature extraction, Transformer-based bidirectional cross-attention, and Mamba for linear complexity long sequence modeling. Firstly, a bidirectional channel interaction attention mechanism dynamically fuses CNN-captured local details with Mamba-modeled global spatial dependencies. Secondly, a lightweight three-tier cascade architecture  is designed to progressively refine multi-scale features. Comprehensive experiments based on eight medical image benchmark datasets demonstrate that MedCTM achieves remarkable state-of-the-art performance and superior computational efficiency.
 
-| | **MedCTM-T** | | **MedCTM-L** | |
-|:--:|:--:|:--:|:--:|:--:|
-| **Branch** | **CNN** | **Mamba** | **CNN** | **Mamba** |
-| {C0, C1, C2, C3} | {64, 128, 256, 384} | {64, 128, 256, 384} | {128, 192, 320, 512} | {128, 192, 320, 512} |
-| {D1, D2, D3} | {3, 3, 3} | {2, 1, 1} | {3, 6, 3} | {2, 2, 1} |
-| Output Size | 56 → 28 → 14 → 7 | | 56 → 28 → 14 → 7 | |
-| Params | 9.8M | | 22.2M | |
-| FLOPs | 1.42G | | 2.63G | |
+<table border="1" style="border-collapse: collapse; text-align: center;">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="2">MedCTM-T</th>
+      <th colspan="2">MedCTM-L</th>
+    </tr>
+    <tr>
+      <th>Branch</th>
+      <th>CNN</th>
+      <th>Mamba</th>
+      <th>CNN</th>
+      <th>Mamba</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{C0, C1, C2, C3}</td>
+      <td>{64, 128, 256, 384}</td>
+      <td>{64, 128, 256, 384}</td>
+      <td>{128, 192, 320, 512}</td>
+      <td>{128, 192, 320, 512}</td>
+    </tr>
+    <tr>
+      <td>{D1, D2, D3}</td>
+      <td>{3, 3, 3}</td>
+      <td>{2, 1, 1}</td>
+      <td>{3, 6, 3}</td>
+      <td>{2, 2, 1}</td>
+    </tr>
+    <tr>
+      <td>Output Size</td>
+      <td colspan="2">56 → 28 → 14 → 7</td>
+      <td colspan="2">56 → 28 → 14 → 7</td>
+    </tr>
+    <tr>
+      <td>Params</td>
+      <td colspan="2">9.8M</td>
+      <td colspan="2">22.2M</td>
+    </tr>
+    <tr>
+      <td>FLOPs</td>
+      <td colspan="2">1.42G</td>
+      <td colspan="2">2.63G</td>
+    </tr>
+  </tbody>
+</table>
+
 
 
 
