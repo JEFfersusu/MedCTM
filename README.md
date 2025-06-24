@@ -38,7 +38,7 @@ Since MedCTM is suitable for most medical images, you can try applying it to adv
   <img src="assets/datasets.png" width=1000px" />
 </div>
 
-<div align="center" style="font-size: 18px";>
+<div align="center" style="font-size: 18px;">
 
 | Dataset | Task | F1-score | AUC | Kappa |
 |:------:|:--------:|:----------:|:----------:|:----------:|
@@ -52,6 +52,7 @@ Since MedCTM is suitable for most medical images, you can try applying it to adv
 | **[RetinaMNIST](https://medmnist.com/)** | Multi-Class (5) | **42.4 / 43.5** | **74.0 / 75.7** | **37.5 / 37.5** |
 
 </div>
+
 
 > On the left is the Tiny version, and on the right is the Large version.
 ### 📌The next step will be to make the weights public.
