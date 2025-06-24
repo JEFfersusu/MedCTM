@@ -38,7 +38,7 @@ Since MedCTM is suitable for most medical images, you can try applying it to adv
   <img src="assets/datasets.png" width=1000px" />
 </div>
 
-<div align="center">
+<div align="center" style="font-size: 18px;>
 
 | Dataset | Task | F1-score | AUC | Kappa |
 |:------:|:--------:|:----------:|:----------:|:----------:|
