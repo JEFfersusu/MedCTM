@@ -23,16 +23,16 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 ------
 # The classification performance of MedCTM
 Since MedCTM is suitable for most medical images, you can try applying it to advanced tasks (such as ***multi-label classification***, ***medical image segmentation***, and ***medical object detection***). In addition, we are testing MedCTM with different parameter sizes.
-| Dataset | Task | F1-score | AUC | Kappa | Model Weight |
+| Dataset | Task | F1-score | AUC | Kappa |
 |:------:|:--------:|:----------:|:----------:|:----------:|:----------:|
-| **[Fetal-Planes-DB](https://zenodo.org/records/3904280)** | Multi-Class | **88.8 / 90.1** | **98.8 / 98.9** | **87.8 / 88.7** |
-| **[Kvasir](https://datasets.simula.no/kvasir/)** | Multi-Class | **88.6 / 88.7** | **99.3 / 99.2** | **86.9 / 87.1** |
-| **[BloodMNIST](https://medmnist.com/)** | Multi-Class | **98.1 / 98.9** | **99.9 / 100.0** | **98.0 / 98.6** |
-| **[DermaMNIST](https://medmnist.com/)** | Multi-Class | **66.4 / 67.2** | **95.9 / 95.4** | **65.3 / 65.8** |
-| **[OrganCMNIST](https://medmnist.com/)** | Multi-Class | **89.0 / 89.9** | **99.3 / 99.5** | **87.8 / 89.4** |
-| **[OrganSMNIST](https://medmnist.com/)** | Multi-Class | **74.9 / 75.9** | **97.7 / 97.9** | **76.5 / 76.9** |
-| **[PneumoniaMNIST](https://medmnist.com/)** | Multi-Class | **92.8 / 95.1** | **99.1 / 98.9** | **85.6 / 90.1** |
-| **[RetinaMNIST](https://medmnist.com/)** | Multi-Class | **42.4 / 43.5** | **74.0 / 75.7** | **37.5 / 37.5** |
+| **[Fetal-Planes-DB](https://zenodo.org/records/3904280)** | Multi-Class (4) | **88.8 / 90.1** | **98.8 / 98.9** | **87.8 / 88.7** |
+| **[Kvasir](https://datasets.simula.no/kvasir/)** | Multi-Class (8) | **88.6 / 88.7** | **99.3 / 99.2** | **86.9 / 87.1** |
+| **[BloodMNIST](https://medmnist.com/)** | Multi-Class (8) | **98.1 / 98.9** | **99.9 / 100.0** | **98.0 / 98.6** |
+| **[DermaMNIST](https://medmnist.com/)** | Multi-Class (7) | **66.4 / 67.2** | **95.9 / 95.4** | **65.3 / 65.8** |
+| **[OrganCMNIST](https://medmnist.com/)** | Multi-Class (11) | **89.0 / 89.9** | **99.3 / 99.5** | **87.8 / 89.4** |
+| **[OrganSMNIST](https://medmnist.com/)** | Multi-Class (11) | **74.9 / 75.9** | **97.7 / 97.9** | **76.5 / 76.9** |
+| **[PneumoniaMNIST](https://medmnist.com/)** | Binary-Class (2) | **92.8 / 95.1** | **99.1 / 98.9** | **85.6 / 90.1** |
+| **[RetinaMNIST](https://medmnist.com/)** | Multi-Class (5) | **42.4 / 43.5** | **74.0 / 75.7** | **37.5 / 37.5** |
 
 
 # Downstream Results
