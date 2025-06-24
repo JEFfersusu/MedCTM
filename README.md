@@ -40,7 +40,8 @@ Since MedCTM is suitable for most medical images, you can try applying it to adv
 | **[OrganSMNIST](https://medmnist.com/)** | Multi-Class (11) | **74.9 / 75.9** | **97.7 / 97.9** | **76.5 / 76.9** |
 | **[PneumoniaMNIST](https://medmnist.com/)** | Binary-Class (2) | **92.8 / 95.1** | **99.1 / 98.9** | **85.6 / 90.1** |
 | **[RetinaMNIST](https://medmnist.com/)** | Multi-Class (5) | **42.4 / 43.5** | **74.0 / 75.7** | **37.5 / 37.5** |
-## 📌The next step will be to make the weights public.
+> On the left is the Tiny version, and on the right is the Large version.
+### 📌The next step will be to make the weights public.
 
 <div align="center">
   <img src="assets/cluster.png" width="600px" />
