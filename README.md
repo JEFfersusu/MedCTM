@@ -34,6 +34,10 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 # The classification performance of MedCTM
 Since MedCTM is suitable for most medical images, you can try applying it to advanced tasks (such as ***multi-label classification***, ***medical image segmentation***, and ***medical object detection***). In addition, we are testing MedCTM with different parameter sizes.
 
+<div align="center">
+  <img src="assets/datasets.png" width=1000px" />
+</div>
+
 <div align="center" style="font-size: 20px;">
 
 | Dataset | Task | F1-score | AUC | Kappa |
@@ -48,10 +52,6 @@ Since MedCTM is suitable for most medical images, you can try applying it to adv
 | **[RetinaMNIST](https://medmnist.com/)** | Multi-Class (5) | **42.4 / 43.5** | **74.0 / 75.7** | **37.5 / 37.5** |
 
 </div>
-<div align="center">
-  <img src="assets/datasets.png" width=1000px" />
-</div>
-
 
 > On the left is the Tiny version, and on the right is the Large version.
 ### 📌The next step will be to make the weights public.
