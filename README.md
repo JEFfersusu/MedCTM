@@ -14,6 +14,15 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 
 > The overall architecture of MedCTM.<br>
 
+| Model         | MedCTM-T |         | MedCTM-L |         |
+|---------------|----------|---------|----------|---------|
+| Branch        | CNN      | Mamba   | CNN      | Mamba   |
+| {C0, C1, C2, C3} | {64, 128, 256, 384} | {64, 128, 256, 384} | {128, 192, 320, 512} | {128, 192, 320, 512} |
+| {D1, D2, D3}  | {3, 3, 3} | {2, 1, 1} | {3, 6, 3} | {2, 2, 1} |
+| Output Size   | 56 → 28 → 14 → 7 |  | 56 → 28 → 14 → 7 |  |
+| Params        | 9.8M     |         | 22.2M    |         |
+| FLOPs         | 1.42G    |         | 2.63G    |         |
+
 # Installation
 * `pip install torch==2.1.2 torchvision==0.16.2 torchaudio`
 * `pip install packaging==23.0`
