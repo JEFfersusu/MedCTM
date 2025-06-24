@@ -48,6 +48,8 @@ Since MedCTM is suitable for most medical images, you can try applying it to adv
 > On the left is the Tiny version, and on the right is the Large version.
 ### 📌The next step will be to make the weights public.
 
+# Results visualization
+
 <div align="center">
   <img src="assets/cluster.png" width="600px" />
 </div>
