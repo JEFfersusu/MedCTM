@@ -15,7 +15,6 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 > The overall architecture of MedCTM.<br>
 
 # Installation
-
 * `pip install torch==2.1.2 torchvision==0.16.2 torchaudio`
 * `pip install packaging==23.0`
 * `pip install timm==0.9.16`
@@ -27,12 +26,6 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 * `pip install SimpleITK`
 * `pip install scikit-image`
 * `pip install PyWavelets==1.4.1`
-<div align="center">
-  <img src="assets/cluster.png" width="600px" />
-</div>
-
-> t-SNE results for MedCTM and other models.
-
 ------
 # The classification performance of MedCTM
 Since MedCTM is suitable for most medical images, you can try applying it to advanced tasks (such as ***multi-label classification***, ***medical image segmentation***, and ***medical object detection***). In addition, we are testing MedCTM with different parameter sizes.
@@ -48,6 +41,11 @@ Since MedCTM is suitable for most medical images, you can try applying it to adv
 | **[RetinaMNIST](https://medmnist.com/)** | Multi-Class (5) | **42.4 / 43.5** | **74.0 / 75.7** | **37.5 / 37.5** |
 ## 📌The next step will be to make the weights public.
 
+<div align="center">
+  <img src="assets/cluster.png" width="600px" />
+</div>
+
+> t-SNE results for MedCTM and other models.
 # Downstream Results
 ## Object Detection and Instant Segmentation Results
 ### Object Detection  and Instant Segmentation Performance Based on [Mask-RCNN](https://openaccess.thecvf.com/content_ICCV_2017/papers/He_Mask_R-CNN_ICCV_2017_paper.pdf) for [COCO2017](https://cocodataset.org):
