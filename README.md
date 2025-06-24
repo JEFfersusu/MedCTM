@@ -21,22 +21,19 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 > t-SNE results for MedCTM and other models.
 
 ------
-# Classification results
-### Image Classification for [ImageNet-1K](https://www.image-net.org):
-| Model                    | FLOPs | #Params | Resolution | Top-1 |                      Cfg                      |                        Log                         |                        Model                         |
-|--------------------------|:-----:|:-------:|:----------:|:-----:|:---------------------------------------------:|:--------------------------------------------------:|:----------------------------------------------------:|
-| MobileMamba-T2           | 255M  |  8.8M   | 192 x 192  | 71.5  | [cfg](configs/mobilemamba/mobilemamba_t2.py)  |  [log](weights/MobileMamba_T2/mobilemamba_t2.txt)  |  [model](https://drive.google.com/file/d/1LXh5wjVEUu5Kj1foclC9zmlKsy7JpMQ-/view?usp=drive_link)  |
-| MobileMamba-T2† | 255M  |  8.8M   | 192 x 192  | 76.9  | [cfg](configs/mobilemamba/mobilemamba_t2s.py) | [log](weights/MobileMamba_T2s/mobilemamba_t2s.txt) | [model](https://drive.google.com/file/d/14UUeEeN62a1jo5qit-m0yChQnNU8JWQG/view?usp=drive_link) |
-| MobileMamba-T4           | 413M  |  14.2M  | 192 x 192  | 76.1  | [cfg](configs/mobilemamba/mobilemamba_t4.py)  |  [log](weights/MobileMamba_T4/mobilemamba_t4.txt)  |  [model](https://drive.google.com/file/d/17-5Q93_cEhBYMDzWTq4sDcc4_c_ezwpd/view?usp=drive_link)  |
-| MobileMamba-T4†          | 413M  |  14.2M  | 192 x 192  | 78.9  | [cfg](configs/mobilemamba/mobilemamba_t4s.py) | [log](weights/MobileMamba_T4s/mobilemamba_t4s.txt) | [model](https://drive.google.com/file/d/12e1RKJEYDWVjOZuQLycjOUkA5PqCUnwu/view?usp=drive_link) |
-| MobileMamba-S6           | 652M  |  15.0M  | 224 x 224  | 78.0  | [cfg](configs/mobilemamba/mobilemamba_s6.py)  |  [log](weights/MobileMamba_S6/mobilemamba_s6.txt)  |  [model](https://drive.google.com/file/d/13en_zNB2wuHmnHKZMUQDe4KizlaTCHbP/view?usp=drive_link)  |
-| MobileMamba-S6†          | 652M  |  15.0M  | 224 x 224  | 80.7  | [cfg](configs/mobilemamba/mobilemamba_s6s.py) | [log](weights/MobileMamba_S6s/mobilemamba_s6s.txt) | [model](https://drive.google.com/file/d/1ujVeWpoICjioRF0aB7PD1fadM4PGFRfl/view?usp=drive_link) |
-| MobileMamba-B1           | 1080M |  17.1M  | 256 x 256  | 79.9  | [cfg](configs/mobilemamba/mobilemamba_b1.py)  |  [log](weights/MobileMamba_B1/mobilemamba_b1.txt)  |  [model](https://drive.google.com/file/d/1ODO1XM2luMfczbDLJxHrEl-ie7yUscAC/view?usp=drive_link)  |
-| MobileMamba-B1†          | 1080M |  17.1M  | 256 x 256  | 82.2  | [cfg](configs/mobilemamba/mobilemamba_b1s.py) | [log](weights/MobileMamba_B1s/mobilemamba_b1s.txt) | [model](https://drive.google.com/file/d/15rBhYky_f7jNSknXujuwQESaIkiTBAR1/view?usp=drive_link) |
-| MobileMamba-B2           | 2427M |  17.1M  | 384 x 384  | 81.6  | [cfg](configs/mobilemamba/mobilemamba_b2.py)  |  [log](weights/MobileMamba_B2/mobilemamba_b2.txt)  |  [model](https://drive.google.com/file/d/1tJJZqeP09D_IAKKFuQtJQOYm4eNGjr1r/view?usp=drive_link)  |
-| MobileMamba-B2†          | 2427M |  17.1M  | 384 x 384  | 83.3  | [cfg](configs/mobilemamba/mobilemamba_b2s.py) | [log](weights/MobileMamba_B2s/mobilemamba_b2s.txt) | [model](https://drive.google.com/file/d/1KuleL6Fi84zkjIhkRFbR4lqGa2iu6bOp/view?usp=drive_link) |
-| MobileMamba-B4           | 4313M |  17.1M  | 512 x 512  | 82.5  | [cfg](configs/mobilemamba/mobilemamba_b4.py)  |  [log](weights/MobileMamba_B4/mobilemamba_b4.txt)  |  [model](https://drive.google.com/file/d/1MiGLHSldK2JpbQEe-7VlmFsaCdugDnYR/view?usp=drive_link)  |
-| MobileMamba-B4†          | 4313M |  17.1M  | 512 x 512  | 83.6  | [cfg](configs/mobilemamba/mobilemamba_b4s.py) | [log](weights/MobileMamba_B4s/mobilemamba_b4s.txt) | [model](https://drive.google.com/file/d/1KevdesGm8Pb4fEbgZ5JY4FMy9IQgYbiZ/view?usp=drive_link) |
+# The classification performance of MedCTM
+Since MedCTM is suitable for most medical images, you can try applying it to advanced tasks (such as ***multi-label classification***, ***medical image segmentation***, and ***medical object detection***). In addition, we are testing MedCTM with different parameter sizes.
+| Dataset | Task | F1-score | AUC | Kappa | Model Weight |
+|:------:|:--------:|:----------:|:----------:|:----------:|:----------:|
+| **[Fetal-Planes-DB](https://zenodo.org/records/3904280)** | Multi-Class | **88.8 / 90.1** | **98.8 / 98.9** | **87.8 / 88.7** |
+| **[Kvasir](https://datasets.simula.no/kvasir/)** | Multi-Class | **88.6 / 88.7** | **99.3 / 99.2** | **86.9 / 87.1** |
+| **[BloodMNIST](https://medmnist.com/)** | Multi-Class | **98.1 / 98.9** | **99.9 / 100.0** | **98.0 / 98.6** |
+| **[DermaMNIST](https://medmnist.com/)** | Multi-Class | **66.4 / 67.2** | **95.9 / 95.4** | **65.3 / 65.8** |
+| **[OrganCMNIST](https://medmnist.com/)** | Multi-Class | **89.0 / 89.9** | **99.3 / 99.5** | **87.8 / 89.4** |
+| **[OrganSMNIST](https://medmnist.com/)** | Multi-Class | **74.9 / 75.9** | **97.7 / 97.9** | **76.5 / 76.9** |
+| **[PneumoniaMNIST](https://medmnist.com/)** | Multi-Class | **92.8 / 95.1** | **99.1 / 98.9** | **85.6 / 90.1** |
+| **[RetinaMNIST](https://medmnist.com/)** | Multi-Class | **42.4 / 43.5** | **74.0 / 75.7** | **37.5 / 37.5** |
+
 
 # Downstream Results
 ## Object Detection and Instant Segmentation Results
