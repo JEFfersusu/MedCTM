@@ -3,7 +3,13 @@
 </p>
 
 **🔬 A PyTorch implementation of "MedCTM: A CNN-Transformer-Mamba Hybrid Network for Medical Image Classification"**
-
+[![Overview](https://img.shields.io/badge/Overview-blueviolet?style=for-the-badge&logo=book)](https://github.com/yourusername/MedCTM##overview)
+[![Architecture](https://img.shields.io/badge/Architecture-orange?style=for-the-badge&logo=building)](https://github.com/yourusername/MedCTM##architecture)
+[![Installation](https://img.shields.io/badge/Installation-green?style=for-the-badge&logo=tools)](https://github.com/yourusername/MedCTM##installation)
+[![Performance](https://img.shields.io/badge/Performance-red?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM##performance-results)
+[![Quick Start](https://img.shields.io/badge/Quick%20Start-brightgreen?style=for-the-badge&logo=rocket)](https://github.com/yourusername/MedCTM##quick-start)
+[![Visualization](https://img.shields.io/badge/Visualization-purple?style=for-the-badge&logo=microscope)](https://github.com/yourusername/MedCTM##visualization-results)
+[![Applications](https://img.shields.io/badge/Applications-cyan?style=for-the-badge&logo=app)](https://github.com/yourusername/MedCTM##applications--extensions)
 [![Quick Start](https://img.shields.io/badge/Quick-Start-brightgreen?style=for-the-badge&logo=rocket)](https://github.com/yourusername/MedCTM#quick-start)
 [![Performance](https://img.shields.io/badge/Performance-SOTA-blue?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM#performance-results)
 [![Python](https://img.shields.io/badge/Python-3.8+-yellow?style=for-the-badge&logo=python)](https://github.com/yourusername/MedCTM#installation)
@@ -63,9 +69,9 @@ Medical image classification plays a crucial role in computer-aided diagnosis, y
 
 ### Prerequisites
 
-- Python 3.8 or higher
-- CUDA-compatible GPU (recommended)
-- PyTorch 2.0+
+- Python 3.10(ubuntu22.04)
+- CUDA 11.8
+- PyTorch 2.12
 
 ### Step-by-Step Installation
 
@@ -91,13 +97,6 @@ pip install mamba-ssm==1.0.1
 pip install pytest==8.3.5 chardet==4.0.0 yacs==0.1.8 termcolor==2.4.0
 pip install scikit-learn==1.3.2 matplotlib==3.7.1
 pip install SimpleITK scikit-image PyWavelets==1.4.1
-```
-
-### Quick Installation
-
-```bash
-# Alternative: Install all dependencies at once
-pip install -r requirements.txt
 ```
 
 ---
@@ -169,28 +168,6 @@ python test.py \
     --batch_size 32 \
     --save_results
 ```
-
-### Custom Dataset Training
-
-```python
-# Example: Training on custom medical dataset
-from medctm import MedCTM_T
-from medctm.data import CustomMedicalDataset
-
-# Load your custom dataset
-dataset = CustomMedicalDataset(
-    data_dir="path/to/your/data",
-    transform=get_transforms()
-)
-
-# Initialize model
-model = MedCTM_T(num_classes=your_num_classes)
-
-# Train the model
-trainer = MedCTMTrainer(model, dataset)
-trainer.train(epochs=100, lr=0.0001)
-```
-
 ---
 
 ## 🔬 Visualization Results
@@ -280,11 +257,5 @@ Made with ❤️ for the medical AI community
 
 
 <div align="center">
-  [![Overview](https://img.shields.io/badge/📋-Overview-blueviolet?style=for-the-badge&logo=book)](https://github.com/yourusername/MedCTM##overview)
-  [![Architecture](https://img.shields.io/badge/🏗️-Architecture-orange?style=for-the-badge&logo=building)](https://github.com/yourusername/MedCTM##architecture)
-  [![Installation](https://img.shields.io/badge/🛠️-Installation-green?style=for-the-badge&logo=tools)](https://github.com/yourusername/MedCTM##installation)
-  [![Performance](https://img.shields.io/badge/📊-Performance-red?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM##performance-results)
-  [![Quick Start](https://img.shields.io/badge🚀-Quick%20Start-brightgreen?style=for-the-badge&logo=rocket)](https://github.com/yourusername/MedCTM##quick-start)
-  [![Visualization](https://img.shields.io/badge/🔬-Visualization-purple?style=for-the-badge&logo=microscope)](https://github.com/yourusername/MedCTM##visualization-results)
-  [![Applications](https://img.shields.io/badge/🔄-Applications-cyan?style=for-the-badge&logo=app)](https://github.com/yourusername/MedCTM##applications--extensions)
+
 </div>
