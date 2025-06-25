@@ -3,13 +3,13 @@
 </p>
 
 **🔬 A PyTorch implementation of "MedCTM: A CNN-Transformer-Mamba Hybrid Network for Medical Image Classification"**
-[![Overview](https://img.shields.io/badge/Overview-blueviolet?style=for-the-badge&logo=book)](https://github.com/yourusername/MedCTM##overview)
-[![Architecture](https://img.shields.io/badge/Architecture-orange?style=for-the-badge&logo=building)](https://github.com/yourusername/MedCTM##architecture)
-[![Installation](https://img.shields.io/badge/Installation-green?style=for-the-badge&logo=tools)](https://github.com/yourusername/MedCTM##installation)
-[![Performance](https://img.shields.io/badge/Performance-red?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM##performance-results)
-[![Quick Start](https://img.shields.io/badge/Quick%20Start-brightgreen?style=for-the-badge&logo=rocket)](https://github.com/yourusername/MedCTM##quick-start)
-[![Visualization](https://img.shields.io/badge/Visualization-purple?style=for-the-badge&logo=microscope)](https://github.com/yourusername/MedCTM##visualization-results)
-[![Applications](https://img.shields.io/badge/Applications-cyan?style=for-the-badge&logo=app)](https://github.com/yourusername/MedCTM##applications--extensions)
+[![Overview](https://img.shields.io/badge/Overview-blueviolet?style=for-the-badge&logo=book)](https://github.com/yourusername/MedCTM#overview)
+[![Architecture](https://img.shields.io/badge/Architecture-orange?style=for-the-badge&logo=building)](https://github.com/yourusername/MedCTM#architecture)
+[![Installation](https://img.shields.io/badge/Installation-green?style=for-the-badge&logo=tools)](https://github.com/yourusername/MedCTM#installation)
+[![Performance](https://img.shields.io/badge/Performance-red?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM#performance-results)
+[![Quick Start](https://img.shields.io/badge/Quick%20Start-brightgreen?style=for-the-badge&logo=rocket)](https://github.com/yourusername/MedCTM#quick-start)
+[![Visualization](https://img.shields.io/badge/Visualization-purple?style=for-the-badge&logo=microscope)](https://github.com/yourusername/MedCTM#visualization-results)
+[![Applications](https://img.shields.io/badge/Applications-cyan?style=for-the-badge&logo=app)](https://github.com/yourusername/MedCTM#applications--extensions)
 [![Quick Start](https://img.shields.io/badge/Quick-Start-brightgreen?style=for-the-badge&logo=rocket)](https://github.com/yourusername/MedCTM#quick-start)
 [![Performance](https://img.shields.io/badge/Performance-SOTA-blue?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM#performance-results)
 [![Python](https://img.shields.io/badge/Python-3.8+-yellow?style=for-the-badge&logo=python)](https://github.com/yourusername/MedCTM#installation)
