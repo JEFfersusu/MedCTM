@@ -34,9 +34,7 @@ Official PyTorch implementation of "[**MedCTM: A CNN-Transformer-Mamba Hybrid Ne
 # The classification performance of MedCTM
 Since MedCTM is suitable for most medical images, you can try applying it to advanced tasks (such as ***multi-label classification***, ***medical image segmentation***, and ***medical object detection***). In addition, we are testing MedCTM with different parameter sizes.
 
-<div align="center">
-  <img src="assets/datasets.png" width=1000px" />
-</div>
+
 
 <div align="center" style="font-size: 20px;">
 
