@@ -557,9 +557,7 @@ class MedCTM_T(nn.Module):
     def __init__(self, img_size=224, in_chans=3, num_classes=1000):
         super().__init__()
 
-        # --------------------------
-        # 初始卷积层（通道统一为128）
-        # --------------------------
+
         self.stem = nn.Sequential(
             nn.Conv2d(in_chans, 64, 3, 2, 1),
             nn.BatchNorm2d(64),
@@ -569,27 +567,23 @@ class MedCTM_T(nn.Module):
             nn.ReLU()
         )
         
-        # --------------------------
-        # CNN主干（分三阶段）
-        # --------------------------
+
         self.cnn_blocks = nn.ModuleList([
             # Stage1 (H/4 -> H/8)
-            MBBlock(128, 64, 6, 3, 2, 2, True, 0.25),   # 保持H/8
+            MBBlock(128, 64, 6, 3, 2, 2, True, 0.25),   
             MBBlock(64, 128, 6, 3, 1, 1, True, 0.25),
             
             # Stage2 (H/8 -> H/16)
-            MBBlock(128, 96, 6, 5, 2, 2, True, 0.25),  # 下采样到H/16
+            MBBlock(128, 96, 6, 5, 2, 2, True, 0.25),  # H/16
             MBBlock(96, 256, 6, 3, 1, 1, True, 0.25),
             
-            # Stage3 (H/16保持)
-            MBBlock(256, 128, 6, 5, 2, 2, True, 0.25),  # 通道提升到512
+            # Stage3 H/16
+            MBBlock(256, 128, 6, 5, 2, 2, True, 0.25),  # 512
             MBBlock(128, 384, 6, 3, 1, 1, True, 0.25),
             # MBBlock(384, 512, 6, 5, 1, 1, True, 0.25)
         ])
         
-        # --------------------------
-        # Mamba主干（分三阶段）
-        # --------------------------
+      
         self.mamba_blocks = nn.ModuleList([
             # Stage1 (H/4 -> H/8)
             self._make_mamba_stage(128, depth=2, kernel=5, ssm_ratio=2),
@@ -597,34 +591,31 @@ class MedCTM_T(nn.Module):
             # Stage2 (H/8 -> H/16)
             self._make_mamba_stage(256, depth=1, kernel=3, ssm_ratio=2),
             
-            # Stage3 (H/16保持)
+            # Stage3 (H/16)
             self._make_mamba_stage(384, depth=1, kernel=5, ssm_ratio=2)
         ])
         self.mamba_downsample = nn.ModuleList([
-            # Stage1下采样: 32 -> 144
+            # Stage1: 32 -> 144
             nn.Sequential(
                 nn.Conv2d(128, 128, 3, 2, 1),  # H/2 -> H/4
                 nn.BatchNorm2d(128),
                 nn.ReLU()
             ),
-            # Stage2下采样: 144 -> 272
+            # Stage2: 144 -> 272
             nn.Sequential(
                 nn.Conv2d(128, 256, 5, 2, 2),  # H/4 -> H/8
                 nn.BatchNorm2d(256),
                 nn.ReLU()
             ),
-            # Stage3下采样: 272 -> 368 
+            # Stage3: 272 -> 368 
             nn.Sequential(
                 nn.Conv2d(256, 384, 3, 2, 1),  # H/8 -> H/16
                 nn.BatchNorm2d(384),
                 nn.ReLU()
             )
         ])
-        # --------------------------
-        # 跨阶段交互模块
-        # --------------------------
+
         self.cross_attentions = nn.ModuleList([
-            # 每个Stage结束后交互
             BidirectionalCrossAttention(128, 128),  # Stage1
             BidirectionalCrossAttention(128, 128,is_cnn_primary=False),  # Stage1
             BidirectionalCrossAttention(256, 256),  # Stage2
@@ -643,7 +634,6 @@ class MedCTM_T(nn.Module):
         )
 
     def _make_mamba_stage(self, dim, depth, kernel, ssm_ratio):
-        """构建Mamba处理阶段"""
         return nn.Sequential(*[
             MobileMambaBlock(
                         type='s',
@@ -656,46 +646,28 @@ class MedCTM_T(nn.Module):
         ])
 
     def forward(self, x):
-        # 初始特征提取
         x = self.stem(x)  # [B,128,56,56]
         
         # --------------------------
-        # Stage1处理 (H/8)
-        # --------------------------
-        # CNN分支
         cnn_feat1 = self.cnn_blocks[0](x)      # [B,128,28,28]
         cnn_feat1 = self.cnn_blocks[1](cnn_feat1)  # [B,128,28,28]
-        # Mamba分支
         mamba_feat1 = self.mamba_downsample[0](x)   # [B,144,112,112]
         mamba_feat1 = self.mamba_blocks[0](mamba_feat1)    # [B,128,28,28]
-        # 交互
         
         cnn_fused_feat1 = self.cross_attentions[0](cnn_feat1, mamba_feat1)
         mamba_fused_feat1 = self.cross_attentions[1](cnn_feat1, mamba_feat1)
-        # --------------------------
-        # Stage2处理 (H/16)
-        # --------------------------
-        # CNN分支
         cnn_feat2 = self.cnn_blocks[2](cnn_fused_feat1)  # [B,256,14,14]
         cnn_feat2 = self.cnn_blocks[3](cnn_feat2)     # [B,256,14,14]
-        # Mamba分支
         mamba_feat2 = self.mamba_downsample[1](mamba_fused_feat1)   # [B,144,112,112]
 
         mamba_feat2 = self.mamba_blocks[1](mamba_feat2)  # [B,256,14,14]
-        # 交互
         cnn_fused_feat2 = self.cross_attentions[2](cnn_feat2, mamba_feat2)
         mamba_fused_feat2 = self.cross_attentions[3](cnn_feat2, mamba_feat2)
-        # --------------------------
-        # Stage3处理 (H/16保持)
-        # --------------------------
-        # CNN分支
         cnn_feat3 = self.cnn_blocks[4](cnn_fused_feat2)  # [B,512,14,14]
         cnn_feat3 = self.cnn_blocks[5](cnn_feat3)     # [B,512,14,14]
         # cnn_feat3 = self.cnn_blocks[6](cnn_feat3)     # [B,512,14,14]
-        # Mamba分支
         mamba_feat3 = self.mamba_downsample[2](mamba_fused_feat2)   # [B,144,112,112]
         mamba_feat3 = self.mamba_blocks[2](mamba_feat3)  # [B,512,14,14]
-        # 交互
         fused_feat3 = self.cross_attentions[4](cnn_feat3, mamba_feat3)
         
         return self.head(fused_feat3)
@@ -705,9 +677,6 @@ class MedCTM_L(nn.Module):
     def __init__(self, img_size=224, in_chans=3, num_classes=1000):
         super().__init__()
 
-        # --------------------------
-        # 初始卷积层（通道统一为128）
-        # --------------------------
         self.stem = nn.Sequential(
             nn.Conv2d(in_chans, 64, 3, 2, 1),
             nn.BatchNorm2d(64),
@@ -717,27 +686,21 @@ class MedCTM_L(nn.Module):
             nn.ReLU()
         )
 
-        # --------------------------
-        # CNN主干（分三阶段）
-        # --------------------------
         self.cnn_blocks = nn.ModuleList([
             # Stage1 (H/4 -> H/8)
-            MBBlock(128, 96, 6, 3, 2, 2, True, 0.25),  # 保持H/8
+            MBBlock(128, 96, 6, 3, 2, 2, True, 0.25),  
             MBBlock(96, 192, 6, 3, 1, 1, True, 0.25),
 
             # Stage2 (H/8 -> H/16)
-            MBBlock(192, 160, 6, 5, 2, 4, True, 0.25),  # 下采样到H/16
+            MBBlock(192, 160, 6, 5, 2, 4, True, 0.25), 
             MBBlock(160, 320, 6, 3, 1, 2, True, 0.25),
 
-            # Stage3 (H/16保持)
-            MBBlock(320, 256, 6, 5, 2, 2, True, 0.25),  # 通道提升到512
+            # Stage3 (H/16)
+            MBBlock(320, 256, 6, 5, 2, 2, True, 0.25)
             MBBlock(256, 512, 6, 3, 1, 1, True, 0.25),
             # MBBlock(384, 512, 6, 5, 1, 1, True, 0.25)
         ])
 
-        # --------------------------
-        # Mamba主干（分三阶段）
-        # --------------------------
         self.mamba_blocks = nn.ModuleList([
             # Stage1 (H/4 -> H/8)
             self._make_mamba_stage(192, depth=2, kernel=5, ssm_ratio=2),
@@ -745,34 +708,27 @@ class MedCTM_L(nn.Module):
             # Stage2 (H/8 -> H/16)
             self._make_mamba_stage(320, depth=2, kernel=3, ssm_ratio=2),
 
-            # Stage3 (H/16保持)
+            # Stage3 (H/16)
             self._make_mamba_stage(512, depth=1, kernel=5, ssm_ratio=2)
         ])
         self.mamba_downsample = nn.ModuleList([
-            # Stage1下采样: 32 -> 144
             nn.Sequential(
                 nn.Conv2d(128, 192, 3, 2, 1),  # H/2 -> H/4
                 nn.BatchNorm2d(192),
                 nn.ReLU()
             ),
-            # Stage2下采样: 144 -> 272
             nn.Sequential(
                 nn.Conv2d(192, 320, 5, 2, 2),  # H/4 -> H/8
                 nn.BatchNorm2d(320),
                 nn.ReLU()
             ),
-            # Stage3下采样: 272 -> 368
             nn.Sequential(
                 nn.Conv2d(320, 512, 3, 2, 1),  # H/8 -> H/16
                 nn.BatchNorm2d(512),
                 nn.ReLU()
             )
         ])
-        # --------------------------
-        # 跨阶段交互模块
-        # --------------------------
         self.cross_attentions = nn.ModuleList([
-            # 每个Stage结束后交互
             BidirectionalCrossAttention(192, 192),  # Stage1
             BidirectionalCrossAttention(192, 192, is_cnn_primary=False),  # Stage1
             BidirectionalCrossAttention(320, 320),  # Stage2
@@ -780,10 +736,6 @@ class MedCTM_L(nn.Module):
             # BidirectionalCrossAttention(512, 512)   # Stage3
             BidirectionalCrossAttention(512, 512)  # Stage3
         ])
-
-        # --------------------------
-        # 分类头
-        # --------------------------
         self.head = nn.Sequential(
             nn.AdaptiveAvgPool2d(1),
             nn.Flatten(),
@@ -791,7 +743,6 @@ class MedCTM_L(nn.Module):
         )
 
     def _make_mamba_stage(self, dim, depth, kernel, ssm_ratio):
-        """构建Mamba处理阶段"""
         return nn.Sequential(*[
             MobileMambaBlock(
                 type='s',
@@ -804,46 +755,26 @@ class MedCTM_L(nn.Module):
         ])
 
     def forward(self, x):
-        # 初始特征提取
         x = self.stem(x)  # [B,128,56,56]
-
-        # --------------------------
-        # Stage1处理 (H/8)
-        # --------------------------
-        # CNN分支
         cnn_feat1 = self.cnn_blocks[0](x)  # [B,128,28,28]
         cnn_feat1 = self.cnn_blocks[1](cnn_feat1)  # [B,128,28,28]
-        # Mamba分支
         mamba_feat1 = self.mamba_downsample[0](x)  # [B,144,112,112]
         mamba_feat1 = self.mamba_blocks[0](mamba_feat1)  # [B,128,28,28]
-        # 交互
 
         cnn_fused_feat1 = self.cross_attentions[0](cnn_feat1, mamba_feat1)
         mamba_fused_feat1 = self.cross_attentions[1](cnn_feat1, mamba_feat1)
-        # --------------------------
-        # Stage2处理 (H/16)
-        # --------------------------
-        # CNN分支
         cnn_feat2 = self.cnn_blocks[2](cnn_fused_feat1)  # [B,256,14,14]
         cnn_feat2 = self.cnn_blocks[3](cnn_feat2)  # [B,256,14,14]
-        # Mamba分支
         mamba_feat2 = self.mamba_downsample[1](mamba_fused_feat1)  # [B,144,112,112]
 
         mamba_feat2 = self.mamba_blocks[1](mamba_feat2)  # [B,256,14,14]
-        # 交互
         cnn_fused_feat2 = self.cross_attentions[2](cnn_feat2, mamba_feat2)
         mamba_fused_feat2 = self.cross_attentions[3](cnn_feat2, mamba_feat2)
-        # --------------------------
-        # Stage3处理 (H/16保持)
-        # --------------------------
-        # CNN分支
         cnn_feat3 = self.cnn_blocks[4](cnn_fused_feat2)  # [B,512,14,14]
         cnn_feat3 = self.cnn_blocks[5](cnn_feat3)  # [B,512,14,14]
         # cnn_feat3 = self.cnn_blocks[6](cnn_feat3)     # [B,512,14,14]
-        # Mamba分支
         mamba_feat3 = self.mamba_downsample[2](mamba_fused_feat2)  # [B,144,112,112]
         mamba_feat3 = self.mamba_blocks[2](mamba_feat3)  # [B,512,14,14]
-        # 交互
         fused_feat3 = self.cross_attentions[4](cnn_feat3, mamba_feat3)
 
         return self.head(fused_feat3)
