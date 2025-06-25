@@ -93,7 +93,7 @@ We thank but not limited to following repositories for providing assistance for 
 
 
 <p align="center">
-  <img src="assets/MedCTM_logo_01.png" width="600px" alt="MedCTM Logo" />
+  <img src="assets/MedCTM_logo.png" width="600px" />
 </p>
 
 <p align="center">
