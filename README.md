@@ -10,9 +10,6 @@
 [![Quick Start](https://img.shields.io/badge/Quick%20Start-brightgreen?style=for-the-badge&logo=rocket)](https://github.com/yourusername/MedCTM#quick-start)
 [![Visualization](https://img.shields.io/badge/Visualization-purple?style=for-the-badge&logo=microscope)](https://github.com/yourusername/MedCTM#visualization-results)
 [![Applications](https://img.shields.io/badge/Applications-cyan?style=for-the-badge&logo=app)](https://github.com/yourusername/MedCTM#applications--extensions)
-[![Quick Start](https://img.shields.io/badge/Quick-Start-brightgreen?style=for-the-badge&logo=rocket)](https://github.com/yourusername/MedCTM#quick-start)
-[![Performance](https://img.shields.io/badge/Performance-SOTA-blue?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM#performance-results)
-[![Python](https://img.shields.io/badge/Python-3.8+-yellow?style=for-the-badge&logo=python)](https://github.com/yourusername/MedCTM#installation)
 
 </div>
 
