@@ -263,9 +263,9 @@ We thank the following repositories for their valuable contributions to our rese
 
 # MedCTM: CNN-Transformer-Mamba Hybrid Network
 
-<div align="center">
-
-![MedCTM Logo](assets/MedCTM_logo.png)
+<p align="center">
+  <img src="assets/MedCTM_logo.png" width="600px" />
+</p>
 
 **🔬 A PyTorch implementation of "MedCTM: A CNN-Transformer-Mamba Hybrid Network for Medical Image Classification"**
 
