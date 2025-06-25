@@ -3,9 +3,9 @@
 </p>
 
 **🔬 A PyTorch implementation of "MedCTM: A CNN-Transformer-Mamba Hybrid Network for Medical Image Classification"**
-[![Overview](https://img.shields.io/badge/Overview-blueviolet?style=for-the-badge&logo=book)](**Key Challenges:**)
-[![Architecture](https://img.shields.io/badge/Architecture-orange?style=for-the-badge&logo=building)](##architecture)
-[![Installation](https://img.shields.io/badge/Installation-green?style=for-the-badge&logo=tools)](#installation)
+[![Overview](https://img.shields.io/badge/Overview-blueviolet?style=for-the-badge&logo=book)](## 📋 Overview)
+[![Architecture](https://img.shields.io/badge/Architecture-orange?style=for-the-badge&logo=building)](## 🏗️ Architecture)
+[![Installation](https://img.shields.io/badge/Installation-green?style=for-the-badge&logo=tools)](## 🛠️ Installation)
 [![Performance](https://img.shields.io/badge/Performance-red?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM#performance-results)
 [![Quick Start](https://img.shields.io/badge/QuickStart-brightgreen?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM#quick-start)
 [![Visualization](https://img.shields.io/badge/Visualization-purple?style=for-the-badge&logo=microscope)](https://github.com/yourusername/MedCTM#visualization-results)
