@@ -85,6 +85,9 @@ python test.py --dataset PneumoniaMNIST --batch_size 32 --weight_dir best_models
 
 
 # Acknowledgements
-We thank but not limited to following repositories for providing assistance for our research.
-
-
+We thank but not limited to following repositories for providing assistance for our research:
+- [MedMamba](https://github.com/YubiaoYue/MedMamba)
+- [MobileFormer](https://github.com/AAboys/MobileFormer)
+- [MambaOut](https://github.com/yuweihao/MambaOut)
+- [MobileMamba](https://github.com/lewandofskee/MobileMamba)
+- [EfficientNetV2](https://github.com/d-li14/efficientnetv2.pytorch)
