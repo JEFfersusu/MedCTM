@@ -7,7 +7,7 @@
 [![Architecture](https://img.shields.io/badge/Architecture-orange?style=for-the-badge&logo=building)](https://github.com/yourusername/MedCTM#architecture)
 [![Installation](https://img.shields.io/badge/Installation-green?style=for-the-badge&logo=tools)](https://github.com/yourusername/MedCTM#installation)
 [![Performance](https://img.shields.io/badge/Performance-red?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM#performance-results)
-[![Quick Start](https://img.shields.io/badge/Quick-Start-brightgreen?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM#quick-start)
+[![Quick Start](https://img.shields.io/badge/Quick20%Start-brightgreen?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM#quick-start)
 [![Visualization](https://img.shields.io/badge/Visualization-purple?style=for-the-badge&logo=microscope)](https://github.com/yourusername/MedCTM#visualization-results)
 [![Applications](https://img.shields.io/badge/Applications-cyan?style=for-the-badge&logo=app)](https://github.com/yourusername/MedCTM#applications--extensions)
 
