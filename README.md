@@ -3,19 +3,19 @@
 </p>
 
 **🔬 A PyTorch implementation of "MedCTM: A CNN-Transformer-Mamba Hybrid Network for Medical Image Classification"**
-[![Overview](https://img.shields.io/badge/Overview-blueviolet?style=for-the-badge&logo=book)](## Overview)
-[![Architecture](https://img.shields.io/badge/Architecture-orange?style=for-the-badge&logo=building)](## 🏗️ Architecture)
-[![Installation](https://img.shields.io/badge/Installation-green?style=for-the-badge&logo=tools)](## 🛠️ Installation)
-[![Performance](https://img.shields.io/badge/Performance-red?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM#performance-results)
-[![Quick Start](https://img.shields.io/badge/QuickStart-brightgreen?style=for-the-badge&logo=chart-line)](https://github.com/yourusername/MedCTM#quick-start)
-[![Visualization](https://img.shields.io/badge/Visualization-purple?style=for-the-badge&logo=microscope)](https://github.com/yourusername/MedCTM#visualization-results)
-[![Applications](https://img.shields.io/badge/Applications-cyan?style=for-the-badge&logo=app)](https://github.com/yourusername/MedCTM#applications--extensions)
+[![Overview](https://img.shields.io/badge/Overview-blueviolet?style=for-the-badge&logo=book)]
+[![Architecture](https://img.shields.io/badge/Architecture-orange?style=for-the-badge&logo=building)]
+[![Installation](https://img.shields.io/badge/Installation-green?style=for-the-badge&logo=tools)]
+[![Performance](https://img.shields.io/badge/Performance-red?style=for-the-badge&logo=chart-line)]
+[![Quick Start](https://img.shields.io/badge/QuickStart-brightgreen?style=for-the-badge&logo=chart-line)]
+[![Visualization](https://img.shields.io/badge/Visualization-purple?style=for-the-badge&logo=microscope)]
+[![Applications](https://img.shields.io/badge/Applications-cyan?style=for-the-badge&logo=app)]
 
 </div>
 
 ---
 
-## Overview
+## 📋 Overview
 
 Medical image classification plays a crucial role in computer-aided diagnosis, yet existing methods face significant challenges in jointly modeling local texture, global dependencies, and long-range contextual relationships. 
 
