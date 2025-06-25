@@ -91,7 +91,6 @@ We thank but not limited to following repositories for providing assistance for 
 - [EfficientNetV2](https://github.com/d-li14/efficientnetv2.pytorch)
 
 
-# MedCTM
 
 <p align="center">
   <img src="assets/MedCTM_logo_01.png" width="600px" alt="MedCTM Logo" />
@@ -112,9 +111,6 @@ We thank but not limited to following repositories for providing assistance for 
 
 ## 📋 Abstract
 
-<details>
-<summary><b>🔍 Click to expand full abstract</b></summary>
-
 Medical image classification is crucial for computer-aided diagnosis, while existing methods face challenges in jointly modeling local texture, global dependencies, and long-range contextual relationships. Specifically, CNNs typically lack long-range feature capture capability, while Transformers rely on a large amount of labeled data and are computationally expensive. Furthermore, existing hybrid architectures usually suffer from inefficient feature interaction and computational redundancy. 
 
 To address these problems, we propose a novel **CNN-Transformer-Mamba ternary collaborative architecture** named MedCTM networks. The network synergizes:
@@ -122,20 +118,13 @@ To address these problems, we propose a novel **CNN-Transformer-Mamba ternary co
 - 🔄 Transformer-based bidirectional cross-attention  
 - ⚡ Mamba for linear complexity long sequence modeling
 
-</details>
-
 ### 🎯 Key Contributions
 
-> **💡 Innovation Points**
-> 
-> 1. **🔗 Bidirectional Channel Interaction Attention** - Dynamically fuses CNN-captured local details with Mamba-modeled global spatial dependencies
-> 2. **🏭 Three-tier Cascade Architecture** - Progressively refines multi-scale features with lightweight design
-> 3. **📊 State-of-the-art Performance** - Comprehensive experiments on 8 medical datasets demonstrate superior results
+1. **🔗 Bidirectional Channel Interaction Attention** - Dynamically fuses CNN-captured local details with Mamba-modeled global spatial dependencies
+2. **🏭 Three-tier Cascade Architecture** - Progressively refines multi-scale features with lightweight design
+3. **📊 State-of-the-art Performance** - Comprehensive experiments on 8 medical datasets demonstrate superior results
 
 ## 🏗️ Architecture
-
-<details>
-<summary><b>🎨 View Architecture Details</b></summary>
 
 <div align="center">
   <img src="assets/BCIA.png" width="600px" alt="Bidirectional Channel Interaction Attention" />
@@ -155,12 +144,7 @@ To address these problems, we propose a novel **CNN-Transformer-Mamba ternary co
 | 🔄 **Transformer** | Cross-attention mechanism | Global dependency modeling |
 | ⚡ **Mamba** | Sequential modeling | Linear complexity |
 
-</details>
-
 ## 🚀 Installation
-
-<details>
-<summary><b>⚙️ Installation Guide</b></summary>
 
 ### Prerequisites
 - 🐍 Python 3.8+
@@ -189,59 +173,29 @@ pip install scikit-image
 pip install PyWavelets==1.4.1
 ```
 
-### 🐳 Docker Installation (Alternative)
-
-```bash
-# Build Docker image
-docker build -t medctm:latest .
-
-# Run container
-docker run --gpus all -it medctm:latest
-```
-
-</details>
-
 ## 📊 Performance Results
 
-> **🏆 State-of-the-Art Results**
-> 
-> MedCTM demonstrates exceptional performance across multiple medical imaging datasets.
-> Results shown as **Tiny version** / **Large version**.
+MedCTM demonstrates exceptional performance across multiple medical imaging datasets. Results shown as **Tiny version** / **Large version**.
 
 <div align="center">
 
-| Dataset | Task | F1-score | AUC | Kappa | Status |
-|:------:|:--------:|:----------:|:----------:|:----------:|:------:|
-| **[Fetal-Planes-DB](https://zenodo.org/records/3904280)** | Multi-Class (4) | **88.8 / 90.1** | **98.8 / 98.9** | **87.8 / 88.7** | 🥇 |
-| **[Kvasir](https://datasets.simula.no/kvasir/)** | Multi-Class (8) | **88.6 / 88.7** | **99.3 / 99.2** | **86.9 / 87.1** | 🥇 |
-| **[BloodMNIST](https://medmnist.com/)** | Multi-Class (8) | **98.1 / 98.9** | **99.9 / 100.0** | **98.0 / 98.6** | 🥇 |
-| **[DermaMNIST](https://medmnist.com/)** | Multi-Class (7) | **66.4 / 67.2** | **95.9 / 95.4** | **65.3 / 65.8** | 🥈 |
-| **[OrganCMNIST](https://medmnist.com/)** | Multi-Class (11) | **89.0 / 89.9** | **99.3 / 99.5** | **87.8 / 89.4** | 🥇 |
-| **[OrganSMNIST](https://medmnist.com/)** | Multi-Class (11) | **74.9 / 75.9** | **97.7 / 97.9** | **76.5 / 76.9** | 🥈 |
-| **[PneumoniaMNIST](https://medmnist.com/)** | Binary-Class (2) | **92.8 / 95.1** | **99.1 / 98.9** | **85.6 / 90.1** | 🥇 |
-| **[RetinaMNIST](https://medmnist.com/)** | Multi-Class (5) | **42.4 / 43.5** | **74.0 / 75.7** | **37.5 / 37.5** | 🥉 |
-
-</div>
-
-<div align="center">
-
-### 📈 Performance Summary
-
-<img src="https://img.shields.io/badge/Average_F1-80.2%25-brightgreen?style=for-the-badge" alt="Average F1">
-<img src="https://img.shields.io/badge/Average_AUC-95.8%25-blue?style=for-the-badge" alt="Average AUC">
-<img src="https://img.shields.io/badge/Datasets_Tested-8-orange?style=for-the-badge" alt="Datasets">
+| Dataset | Task | F1-score | AUC | Kappa |
+|:------:|:--------:|:----------:|:----------:|:----------:|
+| **[Fetal-Planes-DB](https://zenodo.org/records/3904280)** | Multi-Class (4) | **88.8 / 90.1** | **98.8 / 98.9** | **87.8 / 88.7** |
+| **[Kvasir](https://datasets.simula.no/kvasir/)** | Multi-Class (8) | **88.6 / 88.7** | **99.3 / 99.2** | **86.9 / 87.1** |
+| **[BloodMNIST](https://medmnist.com/)** | Multi-Class (8) | **98.1 / 98.9** | **99.9 / 100.0** | **98.0 / 98.6** |
+| **[DermaMNIST](https://medmnist.com/)** | Multi-Class (7) | **66.4 / 67.2** | **95.9 / 95.4** | **65.3 / 65.8** |
+| **[OrganCMNIST](https://medmnist.com/)** | Multi-Class (11) | **89.0 / 89.9** | **99.3 / 99.5** | **87.8 / 89.4** |
+| **[OrganSMNIST](https://medmnist.com/)** | Multi-Class (11) | **74.9 / 75.9** | **97.7 / 97.9** | **76.5 / 76.9** |
+| **[PneumoniaMNIST](https://medmnist.com/)** | Binary-Class (2) | **92.8 / 95.1** | **99.1 / 98.9** | **85.6 / 90.1** |
+| **[RetinaMNIST](https://medmnist.com/)** | Multi-Class (5) | **42.4 / 43.5** | **74.0 / 75.7** | **37.5 / 37.5** |
 
 </div>
 
 ### 📌 Coming Soon
-<div align="center">
-  <img src="https://img.shields.io/badge/🎁_Pre--trained_Weights-Coming_Soon-yellow?style=for-the-badge&logo=gift" alt="Weights Coming Soon">
-</div>
+Pre-trained model weights will be made publicly available.
 
 ## 🔬 Visualization Results
-
-<details>
-<summary><b>🎨 Click to view visualization results</b></summary>
 
 ### 🔥 Grad-CAM Heatmaps
 <div align="center">
@@ -255,22 +209,9 @@ docker run --gpus all -it medctm:latest
   <p><em>📊 t-SNE results comparing MedCTM with other models</em></p>
 </div>
 
-### 📊 Attention Maps
-> **Interactive Attention Visualization**
-> 
-> Our bidirectional attention mechanism effectively captures both local and global features:
-> - 🔵 **Blue regions**: Local CNN features
-> - 🔴 **Red regions**: Global Mamba features  
-> - 🟡 **Yellow regions**: Fused attention areas
-
-</details>
-
 ## 🛠️ Quick Start
 
 ### 🏃‍♂️ Training
-
-<details>
-<summary><b>🚀 Training Configuration</b></summary>
 
 ```bash
 # 🔥 Basic training
@@ -280,145 +221,40 @@ python train.py \
     --batch_size 32 \
     --lr 0.0001 \
     --dataset PneumoniaMNIST
-
-# ⚡ Advanced training with MedCTM
-python train.py \
-    --model MedCTM_T \
-    --epochs 200 \
-    --batch_size 64 \
-    --lr 0.0005 \
-    --dataset BloodMNIST \
-    --augmentation \
-    --scheduler cosine \
-    --warmup_epochs 10
 ```
-
-### 📊 Training Tips
-- 🎯 **Batch Size**: Start with 32-64 for optimal performance
-- 📈 **Learning Rate**: 0.0001-0.001 works best for medical datasets
-- 🔄 **Data Augmentation**: Highly recommended for medical images
-- ⏰ **Warmup**: Use 5-10% of total epochs for warmup
-
-</details>
 
 ### 🧪 Testing
 
-<details>
-<summary><b>🔍 Evaluation & Testing</b></summary>
-
 ```bash
-# 📊 Single model evaluation
+# 📊 Model evaluation
 python test.py \
     --dataset PneumoniaMNIST \
     --batch_size 32 \
     --weight_dir best_models \
-    --model MedCTM_T
-
-# 🏆 Multi-model comparison
-python test.py \
-    --dataset PneumoniaMNIST \
-    --batch_size 32 \
-    --weight_dir best_models \
-    --models convnext_tiny resnet18 MedCTM_T \
-    --save_results \
-    --generate_report
+    --models convnext_tiny resnet18 MedCTM_T
 ```
-
-### 📈 Evaluation Metrics
-- 🎯 **F1-Score**: Harmonic mean of precision and recall
-- 📊 **AUC**: Area Under the ROC Curve
-- 📏 **Kappa**: Inter-rater agreement coefficient
-- ⚡ **Inference Time**: Model efficiency measurement
-
-</details>
 
 ## 🔄 Extensions and Applications
 
-<div align="center">
+MedCTM's versatile architecture makes it suitable for various medical imaging tasks:
+- 🏷️ **Multi-label classification** for complex diagnostic tasks
+- 🖼️ **Medical image segmentation** for anatomical structure identification  
+- 🎯 **Medical object detection** for lesion and abnormality detection
 
-### 🚀 Supported Tasks
-
-<img src="https://img.shields.io/badge/Multi--Label_Classification-✅-brightgreen?style=for-the-badge" alt="Multi-Label">
-<img src="https://img.shields.io/badge/Image_Segmentation-✅-blue?style=for-the-badge" alt="Segmentation">
-<img src="https://img.shields.io/badge/Object_Detection-✅-orange?style=for-the-badge" alt="Detection">
-<img src="https://img.shields.io/badge/Transfer_Learning-✅-purple?style=for-the-badge" alt="Transfer Learning">
-
-</div>
-
-> **🎯 Versatile Architecture**
-> 
-> MedCTM's hybrid design makes it suitable for various medical imaging scenarios:
-> - 🏷️ **Multi-label classification** for complex diagnostic tasks
-> - 🖼️ **Medical image segmentation** for anatomical structure identification
-> - 🎯 **Medical object detection** for lesion and abnormality detection
-> - 🔄 **Transfer learning** for new medical domains
-
-<details>
-<summary><b>🧪 Experimental Variants</b></summary>
-
-### 🔬 Model Variants in Development
-
-| Variant | Parameters | FLOPs | Accuracy | Status |
-|---------|------------|-------|----------|--------|
-| MedCTM-Nano | 2.1M | 0.3G | 85.2% | 🧪 Testing |
-| MedCTM-Tiny | 5.7M | 1.1G | 88.6% | ✅ Available |
-| MedCTM-Small | 22.1M | 4.3G | 91.4% | 🧪 Testing |
-| MedCTM-Base | 86.7M | 15.4G | 93.8% | 🔄 Training |
-| MedCTM-Large | 307.4M | 61.8G | 95.1% | ✅ Available |
-
-</details>
+We are actively testing MedCTM variants with different parameter configurations to optimize performance across diverse medical imaging scenarios.
 
 ## 🙏 Acknowledgements
 
-<details>
-<summary><b>🤝 Special Thanks</b></summary>
+We thank the following repositories for their valuable contributions to our research:
 
-We gratefully acknowledge the following repositories for their valuable contributions:
-
-<div align="center">
-
-| Repository | Contribution | Status |
-|------------|-------------|--------|
-| [MedMamba](https://github.com/YubiaoYue/MedMamba) | Medical Mamba implementations | ⭐ |
-| [MobileFormer](https://github.com/AAboys/MobileFormer) | Mobile-friendly transformers | ⭐ |
-| [MambaOut](https://github.com/yuweihao/MambaOut) | Mamba optimizations | ⭐ |
-| [MobileMamba](https://github.com/lewandofskee/MobileMamba) | Mobile Mamba implementations | ⭐ |
-| [EfficientNetV2](https://github.com/d-li14/efficientnetv2.pytorch) | Efficient architectures | ⭐ |
-
-</div>
-
-### 🌟 Community Support
-- 💬 **Discussions**: Join our community for technical discussions
-- 🐛 **Issues**: Report bugs and request features
-- 🤝 **Contributions**: We welcome pull requests and collaborations
-
-</details>
-
-## 📄 License
-
-<div align="center">
-  <img src="https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge&logo=open-source-initiative" alt="MIT License">
-</div>
-
-This project is released under the **MIT License**. See [LICENSE](LICENSE) for details.
+- [MedMamba](https://github.com/YubiaoYue/MedMamba) - Medical Mamba implementations
+- [MobileFormer](https://github.com/AAboys/MobileFormer) - Mobile-friendly transformer architectures
+- [MambaOut](https://github.com/yuweihao/MambaOut) - Mamba architecture optimizations
+- [MobileMamba](https://github.com/lewandofskee/MobileMamba) - Mobile Mamba implementations
+- [EfficientNetV2](https://github.com/d-li14/efficientnetv2.pytorch) - Efficient neural network architectures
 
 ---
 
-<div align="center">
-  <h3>🌟 Star History</h3>
-  <img src="https://img.shields.io/github/stars/your-repo/MedCTM?style=social" alt="GitHub stars">
-  <img src="https://img.shields.io/github/forks/your-repo/MedCTM?style=social" alt="GitHub forks">
-  <img src="https://img.shields.io/github/watchers/your-repo/MedCTM?style=social" alt="GitHub watchers">
-</div>
-
-<div align="center">
-  <p><em>🔬 MedCTM - Advancing Medical Image Classification through Hybrid Architecture Innovation</em></p>
-  <p><strong>Made with ❤️ for the Medical AI Community</strong></p>
-</div>
-
-<div align="center">
-  <img src="https://img.shields.io/badge/⬆️-Back_to_Top-blue?style=for-the-badge" alt="Back to Top">
-</div>
-
-
-
+<p align="center">
+  <em>🔬 MedCTM - Advancing Medical Image Classification through Hybrid Architecture Innovation</em>
+</p>
