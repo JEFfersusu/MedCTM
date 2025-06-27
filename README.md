@@ -21,23 +21,23 @@
 Medical image classification plays a crucial role in computer-aided diagnosis, yet existing methods face significant challenges in jointly modeling local texture, global dependencies, and long-range contextual relationships. 
 
 **Key Challenges:**
-- CNNs lack long-range feature capture capability
-- Transformers require extensive labeled data and are computationally expensive
-- Existing hybrid architectures suffer from inefficient feature interaction and computational redundancy
+- CNNs lack long-range feature capture capability.
+- Transformers require extensive labeled data and are computationally expensive.
+- Existing hybrid architectures suffer from inefficient feature interaction and computational redundancy.
 
 **Our Solution:** MedCTM introduces a novel **CNN-Transformer-Mamba ternary collaborative architecture** that synergizes the strengths of all three paradigms.
 
 ### 🎯 Key Features
 
-- **🏗️ Convolutional Local Feature Extraction** - Captures fine-grained spatial details
-- **🔄 Transformer-based Bidirectional Cross-Attention** - Models global dependencies efficiently  
-- **⚡ Mamba for Linear Complexity** - Enables long sequence modeling with reduced computational cost
+- **🏗️ Convolutional Local Feature Extraction** - Captures fine-grained spatial details.
+- **🔄 Transformer-based Bidirectional Cross-Attention** - Models global dependencies efficiently.
+- **⚡ Mamba for Linear Complexity** - Enables long sequence modeling with reduced computational cost.
 
 ### 🚀 Main Contributions
 
-1. **Bidirectional Channel Interaction Attention (BCIA)** - Dynamically fuses CNN-captured local details with Mamba-modeled global spatial dependencies
-2. **Three-tier Cascade Architecture** - Progressively refines multi-scale features with lightweight design
-3. **State-of-the-art Performance** - Comprehensive evaluation on 8 medical datasets demonstrates superior results
+1. **Bidirectional Channel Interaction Attention (BCIA)** - Dynamically fuses CNN-captured local details with Mamba-modeled global spatial dependencies.
+2. **Three-tier Cascade Architecture** - Progressively refines multi-scale features with lightweight design.
+3. **State-of-the-art Performance** - Comprehensive evaluation on 8 medical datasets demonstrates superior results.
 
 ---
 
@@ -46,10 +46,10 @@ Medical image classification plays a crucial role in computer-aided diagnosis, y
 <div align="center">
 
 ![Bidirectional Channel Interaction Attention](assets/BCIA.png)
-*🔄 Bidirectional Channel Interaction Attention Mechanism*
+*🔄 Bidirectional Channel Interaction Attention Mechanism.*
 
 ![MedCTM Framework](assets/framework.png)
-*🏗️ Overall Architecture of MedCTM*
+*🏗️ Overall Architecture of MedCTM.*
 
 </div>
 
@@ -148,7 +148,7 @@ python test.py \
 <div align="center">
 
 ![Grad-CAM Heatmaps](assets/heatmap.png)
-*🔍 Grad-CAM visualization showing model attention on medical images*
+*🔍 Grad-CAM visualization showing model attention on medical images.*
 
 </div>
 
@@ -159,7 +159,7 @@ Our visualizations demonstrate that MedCTM effectively focuses on clinically rel
 <div align="center">
 
 ![t-SNE Results](assets/cluster.png)
-*📊 t-SNE visualization comparing feature representations across different models*
+*📊 t-SNE visualization comparing feature representations across different models.*
 
 </div>
 
@@ -172,14 +172,14 @@ The t-SNE analysis reveals that MedCTM learns more discriminative feature repres
 MedCTM's flexible architecture enables various medical imaging applications:
 
 ### Current Applications
-- **Multi-class Medical Image Classification** - Primary focus with demonstrated SOTA results
-- **Binary Classification Tasks** - Excellent performance on disease detection tasks
-- **Cross-domain Medical Imaging** - Robust performance across different imaging modalities
+- **Multi-class Medical Image Classification** - Primary focus with demonstrated SOTA results.
+- **Binary Classification Tasks** - Excellent performance on disease detection tasks.
+- **Cross-domain Medical Imaging** - Robust performance across different imaging modalities.
 
 ### Future Extensions
-- **🏷️ Generic Image Classification Benchmark** – Designed to assess the model’s ability to generalize across common visual categories
-- **🖼️ Medical Image Segmentation** - Adaptation for pixel-level anatomical structure identification
-- **🎯 Medical Object Detection** - Extension for lesion and abnormality localization
+- **🏷️ Generic Image Classification Benchmark** – Designed to assess the model’s ability to generalize across common visual categories.
+- **🖼️ Medical Image Segmentation** - Adaptation for pixel-level anatomical structure identification.
+- **🎯 Medical Object Detection** - Extension for lesion and abnormality localization.
 
 ---
 
@@ -188,11 +188,11 @@ MedCTM's flexible architecture enables various medical imaging applications:
 
 We extend our gratitude to the following projects and researchers:
 
-- **[MedMamba](https://github.com/YubiaoYue/MedMamba)** - Foundation for medical Mamba implementations
-- **[MobileFormer](https://github.com/AAboys/MobileFormer)** - Mobile-friendly transformer architectures
-- **[MambaOut](https://github.com/yuweihao/MambaOut)** - Mamba architecture optimizations
-- **[MobileMamba](https://github.com/lewandofskee/MobileMamba)** - Mobile Mamba implementations
-- **[EfficientNetV2](https://github.com/d-li14/efficientnetv2.pytorch)** - Efficient neural network architectures
+- **[MedMamba](https://github.com/YubiaoYue/MedMamba)**
+- **[MobileFormer](https://github.com/AAboys/MobileFormer)**
+- **[MambaOut](https://github.com/yuweihao/MambaOut)**
+- **[MobileMamba](https://github.com/lewandofskee/MobileMamba)**
+- **[EfficientNetV2](https://github.com/d-li14/efficientnetv2.pytorch)**
 
 Special thanks to the medical imaging community for providing high-quality datasets and benchmarks.
 
@@ -200,9 +200,9 @@ Special thanks to the medical imaging community for providing high-quality datas
 
 <div align="center">
 
-**🔬 MedCTM - Advancing Medical Image Classification through Hybrid Architecture Innovation**
+**🔬 MedCTM - Advancing Medical Image Classification through Hybrid Architecture Innovation.**
 
-Made with ❤️ for the medical AI community
+Made with ❤️ for the medical AI community.
 
 </div>
 
