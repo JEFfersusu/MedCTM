@@ -127,7 +127,6 @@ python train.py \
     --epochs 100 \
     --batch_size 32 \
     --lr 0.0001 \
-    --save_dir ./checkpoints
 ```
 
 ### Model Evaluation
