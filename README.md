@@ -184,26 +184,6 @@ MedCTM's flexible architecture enables various medical imaging applications:
 
 ---
 
-## 📁 Project Structure
-
-```
-MedCTM/
-├── assets/                 # Images and documentation assets
-├── configs/               # Configuration files
-├── data/                  # Dataset loading and preprocessing
-├── models/                # Model implementations
-│   ├── medctm.py         # Main MedCTM architecture
-│   ├── components/       # Individual components (CNN, Transformer, Mamba)
-│   └── utils.py          # Model utilities
-├── training/             # Training scripts and utilities
-├── evaluation/           # Evaluation and testing scripts
-├── visualization/        # Visualization tools
-├── requirements.txt      # Python dependencies
-├── train.py             # Main training script
-├── test.py              # Main testing script
-└── README.md            # This file
-```
----
 
 ## 🙏 Acknowledgements
 
