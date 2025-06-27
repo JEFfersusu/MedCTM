@@ -53,13 +53,6 @@ Medical image classification plays a crucial role in computer-aided diagnosis, y
 
 </div>
 
-### 🧩 Component Analysis
-
-| Component | Primary Function | Key Advantage |
-|-----------|------------------|---------------|
-| **🔲 CNN Module** | Local feature extraction | Local detail capture |
-| **🔄 Transformer** | Cross-attention mechanism | Global dependency modeling |
-| **⚡ Mamba** | Sequential modeling | Linear computational complexity |
 
 ---
 
