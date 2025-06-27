@@ -535,6 +535,7 @@ class BidirectionalCrossAttention(nn.Module):
             return self._cnn_as_query(cnn_feat, mamba_feat)
         else:
             return self._mamba_as_query(cnn_feat, mamba_feat)
+            
 class MedCTM_T(nn.Module):
     def __init__(self, img_size=224, in_chans=3, num_classes=1000):
         super().__init__()
@@ -554,7 +555,7 @@ class MedCTM_T(nn.Module):
             MBBlock(128, 96, 6, 5, 2, 2, True, 0.25), 
             MBBlock(96, 256, 6, 3, 1, 1, True, 0.25),
             MBBlock(256, 128, 6, 5, 2, 2, True, 0.25),  
-            MBBlock(128, 384, 6, 3, 1, 1, True, 0.25),
+            MBBlock(128, 384, 6, 3, 1, 1, True, 0.25)
         ])
         
         self.mamba_blocks = nn.ModuleList([
@@ -569,13 +570,11 @@ class MedCTM_T(nn.Module):
                 nn.BatchNorm2d(128),
                 nn.ReLU()
             ),
-
             nn.Sequential(
                 nn.Conv2d(128, 256, 5, 2, 2), 
                 nn.BatchNorm2d(256),
                 nn.ReLU()
             ),
-
             nn.Sequential(
                 nn.Conv2d(256, 384, 3, 2, 1),  
                 nn.BatchNorm2d(384),
@@ -654,7 +653,7 @@ class MedCTM_L(nn.Module):
             MBBlock(96, 192, 6, 3, 1, 1, True, 0.25),
             MBBlock(192, 160, 6, 5, 2, 4, True, 0.25), 
             MBBlock(160, 320, 6, 3, 1, 2, True, 0.25),
-            MBBlock(320, 256, 6, 5, 2, 2, True, 0.25)
+            MBBlock(320, 256, 6, 5, 2, 2, True, 0.25),
             MBBlock(256, 512, 6, 3, 1, 1, True, 0.25)
         ])
 
@@ -663,6 +662,7 @@ class MedCTM_L(nn.Module):
             self._make_mamba_stage(320, depth=2, kernel=3, ssm_ratio=2),
             self._make_mamba_stage(512, depth=1, kernel=5, ssm_ratio=2)
         ])
+        
         self.mamba_downsample = nn.ModuleList([
             nn.Sequential(
                 nn.Conv2d(128, 192, 3, 2, 1),  
