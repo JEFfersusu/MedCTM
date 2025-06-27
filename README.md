@@ -57,7 +57,7 @@ Medical image classification plays a crucial role in computer-aided diagnosis, y
 
 | Component | Primary Function | Key Advantage |
 |-----------|------------------|---------------|
-| **🔲 CNN Module** | Local feature extraction | High-resolution detail capture |
+| **🔲 CNN Module** | Local feature extraction | Local detail capture |
 | **🔄 Transformer** | Cross-attention mechanism | Global dependency modeling |
 | **⚡ Mamba** | Sequential modeling | Linear computational complexity |
 
@@ -135,17 +135,6 @@ python train.py \
     --batch_size 32 \
     --lr 0.0001 \
     --save_dir ./checkpoints
-
-# Advanced training with data augmentation
-python train.py \
-    --model MedCTM_L \
-    --dataset Kvasir \
-    --epochs 200 \
-    --batch_size 16 \
-    --lr 0.0001 \
-    --augment \
-    --scheduler cosine \
-    --warmup_epochs 10
 ```
 
 ### Model Evaluation
@@ -157,14 +146,6 @@ python test.py \
     --model MedCTM_T \
     --checkpoint ./checkpoints/best_model.pth \
     --batch_size 32
-
-# Compare multiple models
-python test.py \
-    --dataset PneumoniaMNIST \
-    --models MedCTM_T MedCTM_L resnet18 convnext_tiny \
-    --weight_dir ./best_models \
-    --batch_size 32 \
-    --save_results
 ```
 ---
 
@@ -204,7 +185,7 @@ MedCTM's flexible architecture enables various medical imaging applications:
 - **Cross-domain Medical Imaging** - Robust performance across different imaging modalities
 
 ### Future Extensions
-- **🏷️ Multi-label Classification** - For complex diagnostic scenarios with multiple conditions
+- **🏷️ Generic Image Classification Benchmark** – Designed to assess the model’s ability to generalize across common visual categories
 - **🖼️ Medical Image Segmentation** - Adaptation for pixel-level anatomical structure identification
 - **🎯 Medical Object Detection** - Extension for lesion and abnormality localization
 
