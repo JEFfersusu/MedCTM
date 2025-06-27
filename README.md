@@ -2,7 +2,7 @@
   <img src="assets/MedCTM_logo.png" width="600px" />
 </p>
 
-**🔬 A PyTorch implementation of "MedCTM: A CNN-Transformer-Mamba Hybrid Network for Medical Image Classification"**
+**🔬 Official PyTorch implementation of "MedCTM: A CNN-Transformer-Mamba Hybrid Network for Medical Image Classification"**
 
 [![Overview](https://img.shields.io/badge/Overview-blueviolet?style=for-the-badge&logo=book)]()
 [![Architecture](https://img.shields.io/badge/Architecture-orange?style=for-the-badge&logo=building)]()
