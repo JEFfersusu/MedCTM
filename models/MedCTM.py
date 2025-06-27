@@ -162,7 +162,6 @@ class DWConv2d_BN_ReLU(nn.Sequential):
                                   bias=False))
         self.add_module('bn2', nn.BatchNorm2d(out_channels))
 
-        # Initialize batch norm weights
         nn.init.constant_(self.bn1.weight, bn_weight_init)
         nn.init.constant_(self.bn1.bias, 0)
         nn.init.constant_(self.bn2.weight, bn_weight_init)
@@ -170,7 +169,7 @@ class DWConv2d_BN_ReLU(nn.Sequential):
 
     @torch.no_grad()
     def fuse(self):
-        # Fuse dwconv3x3 and bn1
+
         dwconv3x3, bn1, relu, dwconv1x1, bn2 = self._modules.values()
 
         w1 = bn1.weight / (bn1.running_var + bn1.eps) ** 0.5
@@ -183,7 +182,6 @@ class DWConv2d_BN_ReLU(nn.Sequential):
         fused_dwconv3x3.weight.data.copy_(w1)
         fused_dwconv3x3.bias.data.copy_(b1)
 
-        # Fuse dwconv1x1 and bn2
         w2 = bn2.weight / (bn2.running_var + bn2.eps) ** 0.5
         w2 = dwconv1x1.weight * w2[:, None, None, None]
         b2 = bn2.bias - bn2.running_mean * bn2.weight / (bn2.running_var + bn2.eps) ** 0.5
@@ -194,7 +192,6 @@ class DWConv2d_BN_ReLU(nn.Sequential):
         fused_dwconv1x1.weight.data.copy_(w2)
         fused_dwconv1x1.bias.data.copy_(b2)
 
-        # Create a new sequential model with fused layers
         fused_model = nn.Sequential(fused_dwconv3x3, relu, fused_dwconv1x1)
         return fused_model
 
@@ -325,7 +322,7 @@ class MobileMambaModule(torch.nn.Module):
         self.proj = torch.nn.Sequential(torch.nn.ReLU(), Conv2d_BN(
             dim, dim, bn_weight_init=0,))
 
-    def forward(self, x):  # x (B,C,H,W)
+    def forward(self, x): 
         x1, x2, x3 = torch.split(x, [self.global_channels, self.local_channels, self.identity_channels], dim=1)
         x1 = self.global_op(x1)
         x2 = self.local_op(x2)
@@ -386,10 +383,6 @@ def conv_bn_act(in_, out_, kernel_size,
 
 
 class SamePadConv2d(nn.Conv2d):
-    """
-    Conv with TF padding='same'
-    https://github.com/pytorch/pytorch/issues/3867#issuecomment-349279036
-    """
 
     def __init__(self, in_channels, out_channels, kernel_size, stride=1, dilation=1, groups=1, bias=True, padding_mode="zeros"):
         super().__init__(in_channels, out_channels, kernel_size, stride, 0, dilation, groups, bias, padding_mode)
@@ -498,48 +491,41 @@ class BidirectionalCrossAttention(nn.Module):
         self.is_cnn_primary = is_cnn_primary
         self.num_heads = num_heads
         self.scale_factor = (cnn_dim // num_heads) ** -0.5
-        
-        # Projections for CNN features
+
         self.cnn_q = nn.Conv2d(cnn_dim, cnn_dim, 1)
         self.cnn_k = nn.Conv2d(cnn_dim, cnn_dim, 1)
         self.cnn_v = nn.Conv2d(cnn_dim, cnn_dim, 1)
-        
-        # Projections for Mamba features
+
         self.mamba_q = nn.Conv2d(mamba_dim, mamba_dim, 1)
         self.mamba_k = nn.Conv2d(mamba_dim, mamba_dim, 1)
         self.mamba_v = nn.Conv2d(mamba_dim, mamba_dim, 1)
-        
-        # Output projection
+
         self.out_proj = nn.Conv2d(cnn_dim, cnn_dim, 1)
 
     def _cnn_as_query(self, cnn_feat, mamba_feat):
         B, C, H, W = cnn_feat.shape
-        # Project CNN features to Q, K, V
+
         Q = self.cnn_q(cnn_feat).view(B, self.num_heads, C // self.num_heads, H * W).permute(0, 1, 3, 2)
         K = self.mamba_k(mamba_feat).view(B, self.num_heads, C // self.num_heads, -1).permute(0, 1, 3, 2)
         V = self.mamba_v(mamba_feat).view(B, self.num_heads, C // self.num_heads, -1).permute(0, 1, 3, 2)
-        
-        # Attention computation
+
         attn = (Q @ K.transpose(-2, -1)) * self.scale_factor
         attn = F.softmax(attn, dim=-1)
-        
-        # Feature fusion
+
         out = (attn @ V).permute(0, 1, 3, 2).reshape(B, C, H, W)
         out = self.out_proj(out)
         return out
 
     def _mamba_as_query(self, cnn_feat, mamba_feat):
         B, C, H, W = mamba_feat.shape
-        # Project Mamba features to Q, K, V
+
         Q = self.mamba_q(mamba_feat).view(B, self.num_heads, C // self.num_heads, H * W).permute(0, 1, 3, 2)
         K = self.cnn_k(cnn_feat).view(B, self.num_heads, C // self.num_heads, -1).permute(0, 1, 3, 2)
         V = self.cnn_v(cnn_feat).view(B, self.num_heads, C // self.num_heads, -1).permute(0, 1, 3, 2)
-        
-        # Attention computation
+
         attn = (Q @ K.transpose(-2, -1)) * self.scale_factor
         attn = F.softmax(attn, dim=-1)
-        
-        # Feature fusion
+
         out = (attn @ V).permute(0, 1, 3, 2).reshape(B, C, H, W)
         out = self.out_proj(out)
         return out
@@ -553,76 +539,58 @@ class MedCTM_T(nn.Module):
     def __init__(self, img_size=224, in_chans=3, num_classes=1000):
         super().__init__()
 
-
         self.stem = nn.Sequential(
             nn.Conv2d(in_chans, 64, 3, 2, 1),
             nn.BatchNorm2d(64),
             nn.ReLU(),
-            nn.Conv2d(64, 128, 3, 2, 1),  # H/4
+            nn.Conv2d(64, 128, 3, 2, 1),  
             nn.BatchNorm2d(128),
             nn.ReLU()
         )
         
-
         self.cnn_blocks = nn.ModuleList([
-            # Stage1 (H/4 -> H/8)
             MBBlock(128, 64, 6, 3, 2, 2, True, 0.25),   
             MBBlock(64, 128, 6, 3, 1, 1, True, 0.25),
-            
-            # Stage2 (H/8 -> H/16)
-            MBBlock(128, 96, 6, 5, 2, 2, True, 0.25),  # H/16
+            MBBlock(128, 96, 6, 5, 2, 2, True, 0.25), 
             MBBlock(96, 256, 6, 3, 1, 1, True, 0.25),
-            
-            # Stage3 H/16
-            MBBlock(256, 128, 6, 5, 2, 2, True, 0.25),  # 512
+            MBBlock(256, 128, 6, 5, 2, 2, True, 0.25),  
             MBBlock(128, 384, 6, 3, 1, 1, True, 0.25),
-            # MBBlock(384, 512, 6, 5, 1, 1, True, 0.25)
         ])
         
-      
         self.mamba_blocks = nn.ModuleList([
-            # Stage1 (H/4 -> H/8)
             self._make_mamba_stage(128, depth=2, kernel=5, ssm_ratio=2),
-            
-            # Stage2 (H/8 -> H/16)
             self._make_mamba_stage(256, depth=1, kernel=3, ssm_ratio=2),
-            
-            # Stage3 (H/16)
             self._make_mamba_stage(384, depth=1, kernel=5, ssm_ratio=2)
         ])
+        
         self.mamba_downsample = nn.ModuleList([
-            # Stage1: 32 -> 144
             nn.Sequential(
-                nn.Conv2d(128, 128, 3, 2, 1),  # H/2 -> H/4
+                nn.Conv2d(128, 128, 3, 2, 1), 
                 nn.BatchNorm2d(128),
                 nn.ReLU()
             ),
-            # Stage2: 144 -> 272
+
             nn.Sequential(
-                nn.Conv2d(128, 256, 5, 2, 2),  # H/4 -> H/8
+                nn.Conv2d(128, 256, 5, 2, 2), 
                 nn.BatchNorm2d(256),
                 nn.ReLU()
             ),
-            # Stage3: 272 -> 368 
+
             nn.Sequential(
-                nn.Conv2d(256, 384, 3, 2, 1),  # H/8 -> H/16
+                nn.Conv2d(256, 384, 3, 2, 1),  
                 nn.BatchNorm2d(384),
                 nn.ReLU()
             )
         ])
 
         self.cross_attentions = nn.ModuleList([
-            BidirectionalCrossAttention(128, 128),  # Stage1
-            BidirectionalCrossAttention(128, 128,is_cnn_primary=False),  # Stage1
-            BidirectionalCrossAttention(256, 256),  # Stage2
-            BidirectionalCrossAttention(256, 256,is_cnn_primary=False),  # Stage2
-            # BidirectionalCrossAttention(512, 512)   # Stage3
-            BidirectionalCrossAttention(384, 384)   # Stage3
+            BidirectionalCrossAttention(128, 128),  
+            BidirectionalCrossAttention(128, 128,is_cnn_primary=False), 
+            BidirectionalCrossAttention(256, 256),  
+            BidirectionalCrossAttention(256, 256,is_cnn_primary=False),  
+            BidirectionalCrossAttention(384, 384)   
         ])
-        
-        # --------------------------
-        # 分类头
-        # --------------------------
+
         self.head = nn.Sequential(
             nn.AdaptiveAvgPool2d(1),
             nn.Flatten(),
@@ -642,28 +610,27 @@ class MedCTM_T(nn.Module):
         ])
 
     def forward(self, x):
-        x = self.stem(x)  # [B,128,56,56]
-        
-        # --------------------------
-        cnn_feat1 = self.cnn_blocks[0](x)      # [B,128,28,28]
-        cnn_feat1 = self.cnn_blocks[1](cnn_feat1)  # [B,128,28,28]
-        mamba_feat1 = self.mamba_downsample[0](x)   # [B,144,112,112]
-        mamba_feat1 = self.mamba_blocks[0](mamba_feat1)    # [B,128,28,28]
+        x = self.stem(x) 
+
+        cnn_feat1 = self.cnn_blocks[0](x)     
+        cnn_feat1 = self.cnn_blocks[1](cnn_feat1) 
+        mamba_feat1 = self.mamba_downsample[0](x)   
+        mamba_feat1 = self.mamba_blocks[0](mamba_feat1)    
         
         cnn_fused_feat1 = self.cross_attentions[0](cnn_feat1, mamba_feat1)
         mamba_fused_feat1 = self.cross_attentions[1](cnn_feat1, mamba_feat1)
-        cnn_feat2 = self.cnn_blocks[2](cnn_fused_feat1)  # [B,256,14,14]
-        cnn_feat2 = self.cnn_blocks[3](cnn_feat2)     # [B,256,14,14]
-        mamba_feat2 = self.mamba_downsample[1](mamba_fused_feat1)   # [B,144,112,112]
+        cnn_feat2 = self.cnn_blocks[2](cnn_fused_feat1)  
+        cnn_feat2 = self.cnn_blocks[3](cnn_feat2)     
+        mamba_feat2 = self.mamba_downsample[1](mamba_fused_feat1)   
 
-        mamba_feat2 = self.mamba_blocks[1](mamba_feat2)  # [B,256,14,14]
+        mamba_feat2 = self.mamba_blocks[1](mamba_feat2)  
         cnn_fused_feat2 = self.cross_attentions[2](cnn_feat2, mamba_feat2)
         mamba_fused_feat2 = self.cross_attentions[3](cnn_feat2, mamba_feat2)
-        cnn_feat3 = self.cnn_blocks[4](cnn_fused_feat2)  # [B,512,14,14]
-        cnn_feat3 = self.cnn_blocks[5](cnn_feat3)     # [B,512,14,14]
-        # cnn_feat3 = self.cnn_blocks[6](cnn_feat3)     # [B,512,14,14]
-        mamba_feat3 = self.mamba_downsample[2](mamba_fused_feat2)   # [B,144,112,112]
-        mamba_feat3 = self.mamba_blocks[2](mamba_feat3)  # [B,512,14,14]
+        cnn_feat3 = self.cnn_blocks[4](cnn_fused_feat2) 
+        cnn_feat3 = self.cnn_blocks[5](cnn_feat3)    
+ 
+        mamba_feat3 = self.mamba_downsample[2](mamba_fused_feat2)  
+        mamba_feat3 = self.mamba_blocks[2](mamba_feat3)  
         fused_feat3 = self.cross_attentions[4](cnn_feat3, mamba_feat3)
         
         return self.head(fused_feat3)
@@ -677,61 +644,51 @@ class MedCTM_L(nn.Module):
             nn.Conv2d(in_chans, 64, 3, 2, 1),
             nn.BatchNorm2d(64),
             nn.ReLU(),
-            nn.Conv2d(64, 128, 3, 2, 1),  # H/4
+            nn.Conv2d(64, 128, 3, 2, 1),  
             nn.BatchNorm2d(128),
             nn.ReLU()
         )
 
         self.cnn_blocks = nn.ModuleList([
-            # Stage1 (H/4 -> H/8)
             MBBlock(128, 96, 6, 3, 2, 2, True, 0.25),  
             MBBlock(96, 192, 6, 3, 1, 1, True, 0.25),
-
-            # Stage2 (H/8 -> H/16)
             MBBlock(192, 160, 6, 5, 2, 4, True, 0.25), 
             MBBlock(160, 320, 6, 3, 1, 2, True, 0.25),
-
-            # Stage3 (H/16)
             MBBlock(320, 256, 6, 5, 2, 2, True, 0.25)
-            MBBlock(256, 512, 6, 3, 1, 1, True, 0.25),
-            # MBBlock(384, 512, 6, 5, 1, 1, True, 0.25)
+            MBBlock(256, 512, 6, 3, 1, 1, True, 0.25)
         ])
 
         self.mamba_blocks = nn.ModuleList([
-            # Stage1 (H/4 -> H/8)
             self._make_mamba_stage(192, depth=2, kernel=5, ssm_ratio=2),
-
-            # Stage2 (H/8 -> H/16)
             self._make_mamba_stage(320, depth=2, kernel=3, ssm_ratio=2),
-
-            # Stage3 (H/16)
             self._make_mamba_stage(512, depth=1, kernel=5, ssm_ratio=2)
         ])
         self.mamba_downsample = nn.ModuleList([
             nn.Sequential(
-                nn.Conv2d(128, 192, 3, 2, 1),  # H/2 -> H/4
+                nn.Conv2d(128, 192, 3, 2, 1),  
                 nn.BatchNorm2d(192),
                 nn.ReLU()
             ),
             nn.Sequential(
-                nn.Conv2d(192, 320, 5, 2, 2),  # H/4 -> H/8
+                nn.Conv2d(192, 320, 5, 2, 2), 
                 nn.BatchNorm2d(320),
                 nn.ReLU()
             ),
             nn.Sequential(
-                nn.Conv2d(320, 512, 3, 2, 1),  # H/8 -> H/16
+                nn.Conv2d(320, 512, 3, 2, 1), 
                 nn.BatchNorm2d(512),
                 nn.ReLU()
             )
         ])
+        
         self.cross_attentions = nn.ModuleList([
-            BidirectionalCrossAttention(192, 192),  # Stage1
-            BidirectionalCrossAttention(192, 192, is_cnn_primary=False),  # Stage1
-            BidirectionalCrossAttention(320, 320),  # Stage2
-            BidirectionalCrossAttention(320, 320, is_cnn_primary=False),  # Stage2
-            # BidirectionalCrossAttention(512, 512)   # Stage3
-            BidirectionalCrossAttention(512, 512)  # Stage3
+            BidirectionalCrossAttention(192, 192), 
+            BidirectionalCrossAttention(192, 192, is_cnn_primary=False), 
+            BidirectionalCrossAttention(320, 320),  
+            BidirectionalCrossAttention(320, 320, is_cnn_primary=False),
+            BidirectionalCrossAttention(512, 512) 
         ])
+        
         self.head = nn.Sequential(
             nn.AdaptiveAvgPool2d(1),
             nn.Flatten(),
@@ -751,26 +708,26 @@ class MedCTM_L(nn.Module):
         ])
 
     def forward(self, x):
-        x = self.stem(x)  # [B,128,56,56]
-        cnn_feat1 = self.cnn_blocks[0](x)  # [B,128,28,28]
-        cnn_feat1 = self.cnn_blocks[1](cnn_feat1)  # [B,128,28,28]
-        mamba_feat1 = self.mamba_downsample[0](x)  # [B,144,112,112]
-        mamba_feat1 = self.mamba_blocks[0](mamba_feat1)  # [B,128,28,28]
+        x = self.stem(x)  
+        cnn_feat1 = self.cnn_blocks[0](x)
+        cnn_feat1 = self.cnn_blocks[1](cnn_feat1)
+        mamba_feat1 = self.mamba_downsample[0](x) 
+        mamba_feat1 = self.mamba_blocks[0](mamba_feat1) 
 
         cnn_fused_feat1 = self.cross_attentions[0](cnn_feat1, mamba_feat1)
         mamba_fused_feat1 = self.cross_attentions[1](cnn_feat1, mamba_feat1)
-        cnn_feat2 = self.cnn_blocks[2](cnn_fused_feat1)  # [B,256,14,14]
-        cnn_feat2 = self.cnn_blocks[3](cnn_feat2)  # [B,256,14,14]
-        mamba_feat2 = self.mamba_downsample[1](mamba_fused_feat1)  # [B,144,112,112]
+        cnn_feat2 = self.cnn_blocks[2](cnn_fused_feat1) 
+        cnn_feat2 = self.cnn_blocks[3](cnn_feat2)
+        mamba_feat2 = self.mamba_downsample[1](mamba_fused_feat1) 
 
-        mamba_feat2 = self.mamba_blocks[1](mamba_feat2)  # [B,256,14,14]
+        mamba_feat2 = self.mamba_blocks[1](mamba_feat2)
         cnn_fused_feat2 = self.cross_attentions[2](cnn_feat2, mamba_feat2)
         mamba_fused_feat2 = self.cross_attentions[3](cnn_feat2, mamba_feat2)
-        cnn_feat3 = self.cnn_blocks[4](cnn_fused_feat2)  # [B,512,14,14]
-        cnn_feat3 = self.cnn_blocks[5](cnn_feat3)  # [B,512,14,14]
-        # cnn_feat3 = self.cnn_blocks[6](cnn_feat3)     # [B,512,14,14]
-        mamba_feat3 = self.mamba_downsample[2](mamba_fused_feat2)  # [B,144,112,112]
-        mamba_feat3 = self.mamba_blocks[2](mamba_feat3)  # [B,512,14,14]
+        cnn_feat3 = self.cnn_blocks[4](cnn_fused_feat2)
+        cnn_feat3 = self.cnn_blocks[5](cnn_feat3)  
+
+        mamba_feat3 = self.mamba_downsample[2](mamba_fused_feat2) 
+        mamba_feat3 = self.mamba_blocks[2](mamba_feat3)
         fused_feat3 = self.cross_attentions[4](cnn_feat3, mamba_feat3)
 
         return self.head(fused_feat3)
