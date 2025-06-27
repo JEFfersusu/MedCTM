@@ -5,10 +5,6 @@ from timm.models.vision_transformer import trunc_normal_
 from timm.models.layers import SqueezeExcite
 import sys
 import os
-current_file_path = os.path.abspath(__file__)
-project_root = os.path.dirname(os.path.dirname(os.path.dirname(current_file_path)))
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
 from lib_mamba.vmambanew import SS2D
 import torch.nn.functional as F
 from functools import partial
