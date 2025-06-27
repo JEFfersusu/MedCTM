@@ -126,7 +126,7 @@ python train.py \
     --dataset PneumoniaMNIST \
     --epochs 100 \
     --batch_size 32 \
-    --lr 0.0001 \
+    --lr 0.0001
 ```
 
 ### Model Evaluation
