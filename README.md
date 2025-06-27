@@ -186,7 +186,7 @@ MedCTM's flexible architecture enables various medical imaging applications:
 
 ## 🙏 Acknowledgements
 
-We extend our gratitude to the following projects and researchers:
+We thank but not limited to following repositories for providing assistance for our research:
 
 - **[MedMamba](https://github.com/YubiaoYue/MedMamba)**
 - **[MobileFormer](https://github.com/AAboys/MobileFormer)**
