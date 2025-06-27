@@ -102,12 +102,12 @@ MedCTM achieves state-of-the-art performance across multiple medical imaging ben
 |:--------|:-------:|:------------:|:----------------:|:-------:|:---------:|
 | **[Fetal-Planes-DB](https://zenodo.org/records/3904280)** | 4 | Maternal-fetal Ultrasound | **88.8** / **90.1** | **98.8** / **98.9** | **87.8** / **88.7** |
 | **[Kvasir](https://datasets.simula.no/kvasir/)** | 8 | Gastrointestinal Endoscope | **88.6** / **88.7** | **99.3** / **99.2** | **86.9** / **87.1** |
-| **[BloodMNIST](https://medmnist.com/)** | 8 | Dermatoscope | **98.1** / **98.9** | **99.9** / **100.0** | **98.0** / **98.6** |
-| **[DermaMNIST](https://medmnist.com/)** | 7 | Chest X-Ray | **66.4** / **67.2** | **95.9** / **95.4** | **65.3** / **65.8** |
-| **[OrganCMNIST](https://medmnist.com/)** | 11 | Fundus Camera | **89.0** / **89.9** | **99.3** / **99.5** | **87.8** / **89.4** |
-| **[OrganSMNIST](https://medmnist.com/)** | 11 | Blood Cell Microscope | **74.9** / **75.9** | **97.7** / **97.9** | **76.5** / **76.9** |
-| **[PneumoniaMNIST](https://medmnist.com/)** | 2 | Abdominal CT | **92.8** / **95.1** | **99.1** / **98.9** | **85.6** / **90.1** |
-| **[RetinaMNIST](https://medmnist.com/)** | 5 | Abdominal CT | **42.4** / **43.5** | **74.0** / **75.7** | **37.5** / **37.5** |
+| **[BloodMNIST](https://medmnist.com/)** | 8 | Blood Cell Microscope | **98.1** / **98.9** | **99.9** / **100.0** | **98.0** / **98.6** |
+| **[DermaMNIST](https://medmnist.com/)** | 7 | Dermatoscope | **66.4** / **67.2** | **95.9** / **95.4** | **65.3** / **65.8** |
+| **[OrganCMNIST](https://medmnist.com/)** | 11 | Abdominal CT | **89.0** / **89.9** | **99.3** / **99.5** | **87.8** / **89.4** |
+| **[OrganSMNIST](https://medmnist.com/)** | 11 | Abdominal CT | **74.9** / **75.9** | **97.7** / **97.9** | **76.5** / **76.9** |
+| **[PneumoniaMNIST](https://medmnist.com/)** | 2 | Chest X-Ray | **92.8** / **95.1** | **99.1** / **98.9** | **85.6** / **90.1** |
+| **[RetinaMNIST](https://medmnist.com/)** | 5 | Fundus Camera | **42.4** / **43.5** | **74.0** / **75.7** | **37.5** / **37.5** |
 
 </div>
 
