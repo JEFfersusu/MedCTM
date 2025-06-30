@@ -66,25 +66,14 @@ Medical image classification plays a crucial role in computer-aided diagnosis, y
 
 ### Step-by-Step Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/MedCTM.git
-cd MedCTM
 
-# Create virtual environment (recommended)
-python -m venv medctm_env
-source medctm_env/bin/activate  # On Windows: medctm_env\Scripts\activate
-
-# Install core dependencies
 pip install torch==2.1.2 torchvision==0.16.2 torchaudio
 pip install timm==0.9.16 packaging==23.0
 
-# Install Mamba-specific dependencies
 pip install triton==2.1.0
 pip install causal-conv1d==1.0.1
 pip install mamba-ssm==1.0.1
 
-# Install additional utilities
 pip install pytest==8.3.5 chardet==4.0.0 yacs==0.1.8 termcolor==2.4.0
 pip install scikit-learn==1.3.2 matplotlib==3.7.1
 pip install SimpleITK scikit-image PyWavelets==1.4.1
