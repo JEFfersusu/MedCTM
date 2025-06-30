@@ -60,7 +60,7 @@ Medical image classification plays a crucial role in computer-aided diagnosis, y
 
 ### Prerequisites
 
-- Python 3.10(ubuntu22.04)
+- Python 3.10 (Ubuntu22.04)
 - CUDA 11.8
 - PyTorch 2.12
 
