@@ -66,7 +66,7 @@ Medical image classification plays a crucial role in computer-aided diagnosis, y
 
 ### Step-by-Step Installation
 
-
+```
 pip install torch==2.1.2 torchvision==0.16.2 torchaudio
 pip install timm==0.9.16 packaging==23.0
 
