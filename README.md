@@ -27,12 +27,6 @@ Medical image classification plays a crucial role in computer-aided diagnosis, y
 
 **Our Solution:** MedCTM introduces a novel **CNN-Transformer-Mamba ternary collaborative architecture** that synergizes the strengths of all three paradigms.
 
-### 🎯 Key Features
-
-- **🏗️ Convolutional Local Feature Extraction** - Captures fine-grained spatial details.
-- **🔄 Transformer-based Bidirectional Cross-Attention** - Models global dependencies efficiently.
-- **⚡ Mamba for Linear Complexity** - Enables long sequence modeling with reduced computational cost.
-
 ### 🚀 Main Contributions
 
 1. **Bidirectional Channel Interaction Attention (BCIA)** - Dynamically fuses CNN-captured local details with Mamba-modeled global spatial dependencies.
