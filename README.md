@@ -31,15 +31,15 @@ https://www.sciencedirect.com/science/article/pii/S030645732600258X
 
 ## 📋 Overview
 
-Medical image classification requires models that can **jointly represent local pathological details, long-range spatial dependencies, and their cross-scale interaction**. However, existing approaches struggle to achieve this in a unified and efficient manner. :contentReference[oaicite:0]{index=0}  
+Medical image classification requires models that can **jointly represent local pathological details, long-range spatial dependencies, and their cross-scale interaction**. However, existing approaches struggle to achieve this in a unified and efficient manner. 
 
 **Key Challenges:**
 - **CNN-based models** effectively capture local textures but lack explicit modeling of long-range spatial dependencies.
 - **Transformer-based models** provide global context modeling but suffer from high computational complexity and limited efficiency in high-resolution medical images.
-- **Existing hybrid architectures** rely on loosely coupled fusion (e.g., concatenation or unidirectional attention), failing to model **explicit bidirectional interaction between heterogeneous feature streams**.
+- **Existing hybrid architectures** rely on loosely coupled fusion (_e.g._, concatenation or unidirectional attention), failing to model **explicit bidirectional interaction between heterogeneous feature streams**.
 
 **Our Solution:**  
-We propose **MedCTM**, a unified hybrid framework that decomposes representation learning into **local modeling, long-range dependency modeling, and cross-branch interaction**, and integrates them through an **interaction-oriented design** rather than static fusion. :contentReference[oaicite:1]{index=1}  
+We propose **MedCTM**, a unified hybrid framework that decomposes representation learning into **local modeling, long-range dependency modeling, and cross-branch interaction**, and integrates them through an **interaction-oriented design** rather than static fusion. 
 
 ### 🚀 Main Contributions
 
