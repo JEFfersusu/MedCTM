@@ -1,3 +1,5 @@
+# MedCTM
+
 <p align="center">
   <img src="assets/MedCTM_logo.png" width="600px" />
 </p>
