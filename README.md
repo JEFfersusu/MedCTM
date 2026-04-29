@@ -94,7 +94,7 @@ MedCTM achieves state-of-the-art performance across multiple medical imaging ben
 
 </div>
 
-> **Note:** Pre-trained model weights will be released soon. Stay tuned for updates!
+
 
 ---
 
