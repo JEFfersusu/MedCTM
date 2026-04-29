@@ -31,20 +31,26 @@ https://www.sciencedirect.com/science/article/pii/S030645732600258X
 
 ## 📋 Overview
 
-Medical image classification plays a crucial role in computer-aided diagnosis, yet existing methods face significant challenges in jointly modeling local texture, global dependencies, and long-range contextual relationships. 
+Medical image classification requires models that can **jointly represent local pathological details, long-range spatial dependencies, and their cross-scale interaction**. However, existing approaches struggle to achieve this in a unified and efficient manner. :contentReference[oaicite:0]{index=0}  
 
 **Key Challenges:**
-- CNNs lack long-range feature capture capability.
-- Transformers require extensive labeled data and are computationally expensive.
-- Existing hybrid architectures suffer from inefficient feature interaction and computational redundancy.
+- **CNN-based models** effectively capture local textures but lack explicit modeling of long-range spatial dependencies.
+- **Transformer-based models** provide global context modeling but suffer from high computational complexity and limited efficiency in high-resolution medical images.
+- **Existing hybrid architectures** rely on loosely coupled fusion (e.g., concatenation or unidirectional attention), failing to model **explicit bidirectional interaction between heterogeneous feature streams**.
 
-**Our Solution:** MedCTM introduces a novel **CNN-Transformer-Mamba ternary collaborative architecture** that synergizes the strengths of all three paradigms.
+**Our Solution:**  
+We propose **MedCTM**, a unified hybrid framework that decomposes representation learning into **local modeling, long-range dependency modeling, and cross-branch interaction**, and integrates them through an **interaction-oriented design** rather than static fusion. :contentReference[oaicite:1]{index=1}  
 
 ### 🚀 Main Contributions
 
-1. **Bidirectional Channel Interaction Attention (BCIA)** - Dynamically fuses CNN-captured local details with Mamba-modeled global spatial dependencies.
-2. **Three-tier Cascade Architecture** - Progressively refines multi-scale features with lightweight design.
-3. **State-of-the-art Performance** - Comprehensive evaluation on 8 medical datasets demonstrates superior results.
+1. **Bidirectional Channel Interaction Attention (BCIA)**  
+   A Transformer-based interaction module that explicitly models **bidirectional conditional dependencies** between CNN (local features) and Mamba (long-range representations), enabling mutual feature refinement rather than static aggregation.
+
+2. **Interaction-Oriented Three-Stage Architecture**  
+   A progressive multi-stage design where **CNN, Mamba, and BCIA modules operate in parallel**, enabling iterative feature extraction, interaction, and refinement across scales.
+
+3. **Accuracy–Efficiency Trade-off Optimization**  
+   Extensive experiments on **8 datasets spanning 7 imaging modalities** demonstrate that MedCTM achieves **state-of-the-art performance with significantly reduced parameters and computational cost**.
 
 ---
 
