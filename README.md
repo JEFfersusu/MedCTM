@@ -175,13 +175,11 @@ MedCTM's flexible architecture enables various medical imaging applications:
 
 ### Current Applications
 - **Multi-class Medical Image Classification** - Primary focus with demonstrated SOTA results.
-- **Binary Classification Tasks** - Excellent performance on disease detection tasks.
 - **Cross-domain Medical Imaging** - Robust performance across different imaging modalities.
 
 ### Future Extensions
 - **🏷️ Generic Image Classification Benchmark** – Designed to assess the model’s ability to generalize across common visual categories.
 - **🖼️ Medical Image Segmentation** - Adaptation for pixel-level anatomical structure identification.
-- **🎯 Medical Object Detection** - Extension for lesion and abnormality localization.
 
 ---
 
@@ -190,9 +188,7 @@ MedCTM's flexible architecture enables various medical imaging applications:
 
 We thank but not limited to following repositories for providing assistance for our research:
 
-- **[MedMamba](https://github.com/YubiaoYue/MedMamba)**
 - **[MobileFormer](https://github.com/AAboys/MobileFormer)**
-- **[MambaOut](https://github.com/yuweihao/MambaOut)**
 - **[MobileMamba](https://github.com/lewandofskee/MobileMamba)**
 - **[EfficientNetV2](https://github.com/d-li14/efficientnetv2.pytorch)**
 
