@@ -5,11 +5,21 @@
 **🔬 Official PyTorch implementation of "MedCTM: A CNN-Transformer-Mamba Hybrid Network for Medical Image Classification"**
 
 
-## 📢 Our Paper is Now Available!
+# 🎉 PUBLICATION ANNOUNCEMENT 🎉
 
-👉 **[🚀 Read Full Paper (Free Access)](https://authors.elsevier.com/c/1n0TZ_6zz40Md2)**
+## 🧠 MedCTM Paper Accepted & Published!
 
-Published in *Information Processing & Management*  
+📍 *Information Processing & Management*
+
+---
+
+🔥 **FREE ACCESS LINK** 🔥  
+👉 https://authors.elsevier.com/c/1n0TZ_6zz40Md2
+
+---
+
+📄 ScienceDirect:  
+https://www.sciencedirect.com/science/article/pii/S030645732600258X
 
 
 [![Overview](https://img.shields.io/badge/Overview-blueviolet?style=for-the-badge&logo=book)]()
