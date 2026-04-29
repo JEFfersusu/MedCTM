@@ -17,17 +17,6 @@ https://www.sciencedirect.com/science/article/pii/S030645732600258X
 
 ---
 
-[![Overview](https://img.shields.io/badge/Overview-blueviolet?style=for-the-badge&logo=book)]()
-[![Architecture](https://img.shields.io/badge/Architecture-orange?style=for-the-badge&logo=building)]()
-[![Installation](https://img.shields.io/badge/Installation-green?style=for-the-badge&logo=tools)]()
-[![Performance](https://img.shields.io/badge/Performance-red?style=for-the-badge&logo=chart-line)]()
-[![Quick Start](https://img.shields.io/badge/QuickStart-brightgreen?style=for-the-badge&logo=chart-line)]()
-[![Visualization](https://img.shields.io/badge/Visualization-purple?style=for-the-badge&logo=microscope)]()
-[![Applications](https://img.shields.io/badge/Applications-cyan?style=for-the-badge&logo=app)]()
-
-</div>
-
----
 
 ## 📋 Overview
 
